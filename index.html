@@ -167,53 +167,6 @@
 
         .music-bars.paused span { animation-play-state: paused; }
 
-        /* Photo */
-        .photo-section {
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 50px;
-            gap: 16px;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .gold-line {
-            width: 120px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #c9a84c, transparent);
-        }
-
-        .photo-label {
-            color: #c9a84c;
-            font-size: 0.8rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .photo-frame {
-            border: 1px solid rgba(201, 168, 76, 0.3);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 0 40px rgba(201, 168, 76, 0.15);
-            width: 100%;
-        }
-
-        .photo-frame img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .photo-frame img:hover {
-            transform: scale(1.02);
-        }
-
         /* Compte à rebours */
         .countdown {
             display: flex;
@@ -477,6 +430,51 @@
             letter-spacing: 3px;
         }
 
+        /* Photo bas de page */
+        .photo-section {
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 60px;
+            gap: 16px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .gold-line {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+        }
+
+        .photo-label {
+            color: #c9a84c;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .photo-frame {
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(201, 168, 76, 0.15);
+            width: 100%;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-frame img:hover { transform: scale(1.02); }
+
         /* Responsive */
         @media (max-width: 600px) {
             .header h1          { font-size: 2.5rem; }
@@ -485,6 +483,7 @@
             .countdown-item span{ font-size: 1.8rem; }
             .add-task           { flex-wrap: wrap; }
             .add-task select    { width: 100%; }
+            .photo-section      { max-width: 100%; }
         }
     </style>
 </head>
@@ -530,20 +529,6 @@
             <span></span>
             <span></span>
         </div>
-    </div>
-
-    <!-- Photo -->
-    <div class="photo-section">
-        <div class="gold-line"></div>
-        <p class="photo-label">
-            <i class="ph ph-heart"></i>
-            Mélina &amp; Jordan
-            <i class="ph ph-heart"></i>
-        </p>
-        <div class="photo-frame">
-            <img src="photo.jpeg" alt="Mélina & Jordan" />
-        </div>
-        <div class="gold-line"></div>
     </div>
 
     <!-- Compte à rebours -->
@@ -618,6 +603,20 @@
         </div>
 
         <div class="todo-list" id="todoList"></div>
+    </div>
+
+    <!-- Photo — bas de page -->
+    <div class="photo-section">
+        <div class="gold-line"></div>
+        <p class="photo-label">
+            <i class="ph ph-heart"></i>
+            Mélina &amp; Jordan
+            <i class="ph ph-heart"></i>
+        </p>
+        <div class="photo-frame">
+            <img src="photo.jpeg" alt="Mélina & Jordan" />
+        </div>
+        <div class="gold-line"></div>
     </div>
 
     <script>
