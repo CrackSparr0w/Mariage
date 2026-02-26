@@ -24,7 +24,6 @@
             overflow-x: hidden;
         }
 
-        /* Particules */
         .particles {
             position: fixed;
             top: 0;
@@ -46,13 +45,12 @@
         }
 
         @keyframes float {
-            0% { transform: translateY(100vh); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
+            0%   { transform: translateY(100vh); opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 1; }
             100% { transform: translateY(-100px); opacity: 0; }
         }
 
-        /* Header */
         .header {
             text-align: center;
             margin-bottom: 50px;
@@ -69,10 +67,6 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-        }
-
-        .header .et i {
-            font-size: 1.1rem;
         }
 
         .header h1 {
@@ -102,12 +96,13 @@
             -webkit-text-fill-color: #c9a84c;
         }
 
-        /* Compte à rebours */
         .countdown {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             margin-bottom: 60px;
             z-index: 1;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .countdown-item {
@@ -134,7 +129,6 @@
             margin-top: 5px;
         }
 
-        /* Section Todo */
         .todo-section {
             z-index: 1;
             width: 100%;
@@ -155,11 +149,6 @@
             gap: 12px;
         }
 
-        .todo-section h2 i {
-            font-size: 1.3rem;
-        }
-
-        /* Barre de progression */
         .progress-container {
             background: rgba(255,255,255,0.05);
             border-radius: 50px;
@@ -183,7 +172,6 @@
             letter-spacing: 1px;
         }
 
-        /* Ajouter une tâche */
         .add-task {
             display: flex;
             gap: 10px;
@@ -247,7 +235,6 @@
             opacity: 0.9;
         }
 
-        /* Filtres catégories */
         .filters {
             display: flex;
             gap: 8px;
@@ -271,9 +258,7 @@
             gap: 6px;
         }
 
-        .filter-btn i {
-            font-size: 0.9rem;
-        }
+        .filter-btn i { font-size: 0.9rem; }
 
         .filter-btn.active,
         .filter-btn:hover {
@@ -282,7 +267,6 @@
             color: #c9a84c;
         }
 
-        /* Liste des tâches */
         .todo-list {
             display: flex;
             flex-direction: column;
@@ -303,7 +287,7 @@
 
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         .todo-item:hover {
@@ -311,16 +295,12 @@
             border-color: rgba(201, 168, 76, 0.2);
         }
 
-        .todo-item.done {
-            opacity: 0.4;
-        }
-
+        .todo-item.done { opacity: 0.4; }
         .todo-item.done .task-text {
             text-decoration: line-through;
             color: #555;
         }
 
-        /* Checkbox custom */
         .custom-checkbox {
             width: 24px;
             height: 24px;
@@ -342,13 +322,9 @@
         .custom-checkbox.checked i {
             color: #0a0a0a;
             font-size: 0.85rem;
-            font-weight: bold;
         }
 
-        /* Infos tâche */
-        .task-info {
-            flex: 1;
-        }
+        .task-info { flex: 1; }
 
         .task-text {
             font-size: 0.9rem;
@@ -367,19 +343,15 @@
             letter-spacing: 0.5px;
         }
 
-        .task-category i {
-            font-size: 0.8rem;
-        }
+        .task-category i { font-size: 0.8rem; }
 
-        /* Couleurs catégories */
-        .cat-lieu      { background: rgba(100, 149, 237, 0.15); color: #6495ed; }
-        .cat-tenue     { background: rgba(255, 182, 193, 0.15); color: #ffb6c1; }
-        .cat-repas     { background: rgba(144, 238, 144, 0.15); color: #90ee90; }
-        .cat-deco      { background: rgba(255, 215, 0, 0.15);   color: #ffd700; }
-        .cat-invites   { background: rgba(221, 160, 221, 0.15); color: #dda0dd; }
-        .cat-autre     { background: rgba(255,255,255, 0.08);   color: #aaa; }
+        .cat-lieu    { background: rgba(100,149,237,0.15); color: #6495ed; }
+        .cat-tenue   { background: rgba(255,182,193,0.15); color: #ffb6c1; }
+        .cat-repas   { background: rgba(144,238,144,0.15); color: #90ee90; }
+        .cat-deco    { background: rgba(255,215,0,0.15);   color: #ffd700; }
+        .cat-invites { background: rgba(221,160,221,0.15); color: #dda0dd; }
+        .cat-autre   { background: rgba(255,255,255,0.08); color: #aaa;    }
 
-        /* Bouton supprimer */
         .delete-btn {
             background: transparent;
             border: none;
@@ -392,11 +364,8 @@
             align-items: center;
         }
 
-        .delete-btn:hover {
-            color: #e74c3c;
-        }
+        .delete-btn:hover { color: #e74c3c; }
 
-        /* Message vide */
         .empty-msg {
             text-align: center;
             color: #444;
@@ -405,7 +374,230 @@
             letter-spacing: 3px;
         }
 
-        /* Responsive */
         @media (max-width: 600px) {
-            .header h1 { font-size: 2.5rem; }
-            .countdown
+            .header h1       { font-size: 2.2rem; }
+            .countdown-item span { font-size: 1.8rem; }
+            .countdown-item  { padding: 15px 18px; min-width: 65px; }
+            .add-task        { flex-wrap: wrap; }
+            .add-task select { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+
+    <div class="header">
+        <p class="et"><i class="ph ph-sparkle"></i> Le Mariage de <i class="ph ph-sparkle"></i></p>
+        <h1>Mélina & Jordan</h1>
+        <p class="date"><i class="ph ph-calendar-heart"></i> 29 Août 2026</p>
+    </div>
+
+    <div class="countdown">
+        <div class="countdown-item">
+            <span id="days">--</span>
+            <p>Jours</p>
+        </div>
+        <div class="countdown-item">
+            <span id="hours">--</span>
+            <p>Heures</p>
+        </div>
+        <div class="countdown-item">
+            <span id="minutes">--</span>
+            <p>Minutes</p>
+        </div>
+        <div class="countdown-item">
+            <span id="seconds">--</span>
+            <p>Secondes</p>
+        </div>
+    </div>
+
+    <div class="todo-section">
+        <h2><i class="ph ph-check-square"></i> Préparatifs <i class="ph ph-check-square"></i></h2>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+        </div>
+        <div class="progress-text" id="progressText">0 / 0 tâches complétées</div>
+
+        <div class="add-task">
+            <input type="text" id="taskInput" placeholder="Ajouter une tâche..." />
+            <select id="categorySelect">
+                <option value="lieu">📍 Lieu</option>
+                <option value="tenue">👗 Tenue</option>
+                <option value="repas">🍽 Repas</option>
+                <option value="deco">🌸 Déco</option>
+                <option value="invites">💌 Invités</option>
+                <option value="autre">✦ Autre</option>
+            </select>
+            <button onclick="addTask()"><i class="ph ph-plus"></i></button>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterTasks('all', this)">
+                <i class="ph ph-squares-four"></i> Tout
+            </button>
+            <button class="filter-btn" onclick="filterTasks('lieu', this)">
+                <i class="ph ph-map-pin"></i> Lieu
+            </button>
+            <button class="filter-btn" onclick="filterTasks('tenue', this)">
+                <i class="ph ph-dress"></i> Tenue
+            </button>
+            <button class="filter-btn" onclick="filterTasks('repas', this)">
+                <i class="ph ph-fork-knife"></i> Repas
+            </button>
+            <button class="filter-btn" onclick="filterTasks('deco', this)">
+                <i class="ph ph-flower"></i> Déco
+            </button>
+            <button class="filter-btn" onclick="filterTasks('invites', this)">
+                <i class="ph ph-envelope"></i> Invités
+            </button>
+            <button class="filter-btn" onclick="filterTasks('autre', this)">
+                <i class="ph ph-star"></i> Autre
+            </button>
+        </div>
+
+        <div class="todo-list" id="todoList"></div>
+    </div>
+
+    <script>
+        const CATEGORIES = {
+            lieu:    { label: 'Lieu',    icon: 'ph-map-pin'    },
+            tenue:   { label: 'Tenue',   icon: 'ph-dress'      },
+            repas:   { label: 'Repas',   icon: 'ph-fork-knife' },
+            deco:    { label: 'Déco',    icon: 'ph-flower'     },
+            invites: { label: 'Invités', icon: 'ph-envelope'   },
+            autre:   { label: 'Autre',   icon: 'ph-star'       },
+        };
+
+        let tasks         = JSON.parse(localStorage.getItem('weddingTasks') || '[]');
+        let currentFilter = 'all';
+
+        function saveTasks() {
+            localStorage.setItem('weddingTasks', JSON.stringify(tasks));
+        }
+
+        function renderTasks() {
+            const list    = document.getElementById('todoList');
+            const visible = currentFilter === 'all'
+                ? tasks
+                : tasks.filter(t => t.category === currentFilter);
+
+            const done  = tasks.filter(t => t.done).length;
+            const total = tasks.length;
+            const pct   = total === 0 ? 0 : Math.round((done / total) * 100);
+
+            document.getElementById('progressBar').style.width = pct + '%';
+            document.getElementById('progressText').textContent =
+                `${done} / ${total} tâche${total > 1 ? 's' : ''} complétée${done > 1 ? 's' : ''}`;
+
+            if (visible.length === 0) {
+                list.innerHTML = '<p class="empty-msg">✦ &nbsp; Aucune tâche &nbsp; ✦</p>';
+                return;
+            }
+
+            list.innerHTML = visible.map(task => {
+                const cat  = CATEGORIES[task.category] || CATEGORIES.autre;
+                const done = task.done ? 'done' : '';
+                const chk  = task.done ? 'checked' : '';
+                return `
+                <div class="todo-item ${done}" id="task-${task.id}">
+                    <div class="custom-checkbox ${chk}" onclick="toggleTask(${task.id})">
+                        ${task.done ? '<i class="ph ph-check"></i>' : ''}
+                    </div>
+                    <div class="task-info">
+                        <div class="task-text">${task.text}</div>
+                        <span class="task-category cat-${task.category}">
+                            <i class="ph ${cat.icon}"></i> ${cat.label}
+                        </span>
+                    </div>
+                    <button class="delete-btn" onclick="deleteTask(${task.id})">
+                        <i class="ph ph-trash"></i>
+                    </button>
+                </div>`;
+            }).join('');
+        }
+
+        function addTask() {
+            const input = document.getElementById('taskInput');
+            const text  = input.value.trim();
+            if (!text) return;
+
+            tasks.push({
+                id:       Date.now(),
+                text:     text,
+                category: document.getElementById('categorySelect').value,
+                done:     false
+            });
+
+            input.value = '';
+            saveTasks();
+            renderTasks();
+        }
+
+        document.getElementById('taskInput').addEventListener('keydown', e => {
+            if (e.key === 'Enter') addTask();
+        });
+
+        function toggleTask(id) {
+            const t = tasks.find(t => t.id === id);
+            if (t) { t.done = !t.done; saveTasks(); renderTasks(); }
+        }
+
+        function deleteTask(id) {
+            tasks = tasks.filter(t => t.id !== id);
+            saveTasks();
+            renderTasks();
+        }
+
+        function filterTasks(cat, btn) {
+            currentFilter = cat;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderTasks();
+        }
+
+        function updateCountdown() {
+            const target = new Date('2026-08-29T00:00:00');
+            const now    = new Date();
+            const diff   = target - now;
+
+            if (diff <= 0) {
+                document.querySelector('.countdown').innerHTML =
+                    '<p style="color:#c9a84c;font-size:1.5rem;letter-spacing:3px">✦ C\'est le grand jour ! ✦</p>';
+                return;
+            }
+
+            const days    = Math.floor(diff / 86400000);
+            const hours   = Math.floor((diff % 86400000) / 3600000);
+            const minutes = Math.floor((diff % 3600000)  / 60000);
+            const seconds = Math.floor((diff % 60000)    / 1000);
+
+            document.getElementById('days').textContent    = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent   = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 40; i++) {
+                const p = document.createElement('div');
+                p.classList.add('particle');
+                p.style.left              = Math.random() * 100 + '%';
+                p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                p.style.animationDelay    = (Math.random() * 10) + 's';
+                if (Math.random() > 0.7) p.style.background = '#fff';
+                container.appendChild(p);
+            }
+        }
+
+        createParticles();
+        renderTasks();
+    </script>
+
+</body>
+</html>
