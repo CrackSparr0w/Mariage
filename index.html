@@ -630,84 +630,84 @@
 
     <script>
         // ── MUSIQUE ───────────────────────────────────────────────
-        const audio     = document.getElementById('bgMusic');
-        const musicIcon = document.getElementById('musicIcon');
-        const musicBars = document.getElementById('musicBars');
-        let   isPlaying = false;
+const audio     = document.getElementById('bgMusic');
+const musicIcon = document.getElementById('musicIcon');
+const musicBars = document.getElementById('musicBars');
+let   isPlaying = false;
 
-        function toggleMusic() {
-            if (isPlaying) {
-                audio.pause();
-                musicIcon.className = 'ph ph-play';
-                musicBars.classList.add('paused');
-            } else {
-                audio.play();
-                musicIcon.className = 'ph ph-pause';
-                musicBars.classList.remove('paused');
-            }
-            isPlaying = !isPlaying;
-        }
+function toggleMusic() {
+    if (isPlaying) {
+        audio.pause();
+        musicIcon.className = 'ph ph-play';
+        musicBars.classList.add('paused');
+    } else {
+        audio.play();
+        musicIcon.className = 'ph ph-pause';
+        musicBars.classList.remove('paused');
+    }
+    isPlaying = !isPlaying;
+}
 
-        // ── DONNÉES ───────────────────────────────────────────────
-        const categories = {
-            lieu:    { label: 'Lieu',     icon: 'ph-map-pin',    css: 'cat-lieu'    },
-            tenue:   { label: 'Tenues',   icon: 'ph-dress',      css: 'cat-tenue'   },
-            repas:   { label: 'Traiteur', icon: 'ph-fork-knife', css: 'cat-repas'   },
-            deco:    { label: 'Déco',     icon: 'ph-sparkle',    css: 'cat-deco'    },
-            invites: { label: 'Invités',  icon: 'ph-envelope',   css: 'cat-invites' },
-            autre:   { label: 'Autre',    icon: 'ph-push-pin',   css: 'cat-autre'   },
-        };
+// ── DONNÉES ───────────────────────────────────────────────
+const categories = {
+    lieu:    { label: 'Lieu',     icon: 'ph-map-pin',    css: 'cat-lieu'    },
+    tenue:   { label: 'Tenues',   icon: 'ph-dress',      css: 'cat-tenue'   },
+    repas:   { label: 'Traiteur', icon: 'ph-fork-knife', css: 'cat-repas'   },
+    deco:    { label: 'Déco',     icon: 'ph-sparkle',    css: 'cat-deco'    },
+    invites: { label: 'Invités',  icon: 'ph-envelope',   css: 'cat-invites' },
+    autre:   { label: 'Autre',    icon: 'ph-push-pin',   css: 'cat-autre'   },
+};
 
-        let tasks         = JSON.parse(localStorage.getItem('weddingTasks') || '[]');
-        let currentFilter = 'all';
+let tasks         = JSON.parse(localStorage.getItem('weddingTasks') || '[]');
+let currentFilter = 'all';
 
-        function saveTasks() {
-            localStorage.setItem('weddingTasks', JSON.stringify(tasks));
-        }
+function saveTasks() {
+    localStorage.setItem('weddingTasks', JSON.stringify(tasks));
+}
 
-        // ── AJOUTER ───────────────────────────────────────────────
-        function addTask() {
-            const input = document.getElementById('taskInput');
-            const cat   = document.getElementById('categorySelect').value;
-            const text  = input.value.trim();
-            if (!text) return;
-            tasks.push({ id: Date.now(), text, cat, done: false });
-            saveTasks();
-            input.value = '';
-            renderTasks();
-        }
+// ── AJOUTER ───────────────────────────────────────────────
+function addTask() {
+    const input = document.getElementById('taskInput');
+    const cat   = document.getElementById('categorySelect').value;
+    const text  = input.value.trim();
+    if (!text) return;
+    tasks.push({ id: Date.now(), text, cat, done: false });
+    saveTasks();
+    input.value = '';
+    renderTasks();
+}
 
-        document.getElementById('taskInput').addEventListener('keydown', e => {
-            if (e.key === 'Enter') addTask();
-        });
+document.getElementById('taskInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') addTask();
+});
 
-        // ── TOGGLE ────────────────────────────────────────────────
-        function toggleTask(id) {
-            const t = tasks.find(t => t.id === id);
-            if (t) { t.done = !t.done; saveTasks(); renderTasks(); }
-        }
+// ── TOGGLE ────────────────────────────────────────────────
+function toggleTask(id) {
+    const t = tasks.find(t => t.id === id);
+    if (t) { t.done = !t.done; saveTasks(); renderTasks(); }
+}
 
-        // ── SUPPRIMER ─────────────────────────────────────────────
-        function deleteTask(id) {
-            tasks = tasks.filter(t => t.id !== id);
-            saveTasks();
-            renderTasks();
-        }
+// ── SUPPRIMER ─────────────────────────────────────────────
+function deleteTask(id) {
+    tasks = tasks.filter(t => t.id !== id);
+    saveTasks();
+    renderTasks();
+}
 
-        // ── FILTRER ───────────────────────────────────────────────
-        function filterTasks(filter, btn) {
-            currentFilter = filter;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderTasks();
-        }
+// ── FILTRER ───────────────────────────────────────────────
+function filterTasks(filter, btn) {
+    currentFilter = filter;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderTasks();
+}
 
-        // ── RENDU ─────────────────────────────────────────────────
-       function renderTasks() {
+// ── RENDU ─────────────────────────────────────────────────
+function renderTasks() {
     const list = document.getElementById('todoList');
 
     const filtered = currentFilter === 'all'
-        ? tasks
+        ? [...tasks]
         : tasks.filter(t => t.cat === currentFilter);
 
     const done  = tasks.filter(t => t.done).length;
@@ -723,7 +723,6 @@
         return;
     }
 
-    // ✅ FIX RÉEL : on sécurise cat pour ne jamais planter
     list.innerHTML = filtered.map(t => {
         const cat = categories[t.cat] || categories['autre'];
         return `
@@ -746,72 +745,51 @@
     }).join('');
 }
 
+// ── COMPTE À REBOURS ──────────────────────────────────────
+function updateCountdown() {
+    const target = new Date('2026-08-29T00:00:00');
+    const now    = new Date();
+    const diff   = target - now;
 
-            list.innerHTML = filtered.map(t => {
-                const cat = categories[t.cat];
-                return `
-                <div class="todo-item ${t.done ? 'done' : ''}">
-                    <div class="custom-checkbox ${t.done ? 'checked' : ''}"
-                         onclick="toggleTask(${t.id})">
-                        ${t.done ? '<i class="ph ph-check"></i>' : ''}
-                    </div>
-                    <div class="task-info">
-                        <div class="task-text">${t.text}</div>
-                        <span class="task-category ${cat.css}">
-                            <i class="ph ${cat.icon}"></i>
-                            ${cat.label}
-                        </span>
-                    </div>
-                    <button class="delete-btn" onclick="deleteTask(${t.id})">
-                        <i class="ph ph-trash"></i>
-                    </button>
-                </div>`;
-            }).join('');
-        }
+    if (diff <= 0) {
+        document.querySelector('.countdown').innerHTML =
+            '<p style="color:#c9a84c;font-size:1.5rem;letter-spacing:3px">✦ C\'est le grand jour ! ✦</p>';
+        return;
+    }
 
-        // ── COMPTE À REBOURS ──────────────────────────────────────
-        function updateCountdown() {
-            const target = new Date('2026-08-29T00:00:00');
-            const now    = new Date();
-            const diff   = target - now;
+    const days    = Math.floor(diff / 86400000);
+    const hours   = Math.floor((diff % 86400000) / 3600000);
+    const minutes = Math.floor((diff % 3600000)  / 60000);
+    const seconds = Math.floor((diff % 60000)    / 1000);
 
-            if (diff <= 0) {
-                document.querySelector('.countdown').innerHTML =
-                    '<p style="color:#c9a84c;font-size:1.5rem;letter-spacing:3px">✦ C\'est le grand jour ! ✦</p>';
-                return;
-            }
+    document.getElementById('days').textContent    = String(days).padStart(2, '0');
+    document.getElementById('hours').textContent   = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+}
 
-            const days    = Math.floor(diff / 86400000);
-            const hours   = Math.floor((diff % 86400000) / 3600000);
-            const minutes = Math.floor((diff % 3600000)  / 60000);
-            const seconds = Math.floor((diff % 60000)    / 1000);
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
-            document.getElementById('days').textContent    = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent   = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-        }
+// ── PARTICULES ────────────────────────────────────────────
+function createParticles() {
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 40; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        p.style.left              = Math.random() * 100 + '%';
+        p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        p.style.animationDelay    = (Math.random() * 10) + 's';
+        if (Math.random() > 0.7) p.style.background = '#fff';
+        container.appendChild(p);
+    }
+}
 
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
+createParticles();
+renderTasks();
 
-        // ── PARTICULES ────────────────────────────────────────────
-        function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 40; i++) {
-                const p = document.createElement('div');
-                p.classList.add('particle');
-                p.style.left              = Math.random() * 100 + '%';
-                p.style.animationDuration = (Math.random() * 15 + 10) + 's';
-                p.style.animationDelay    = (Math.random() * 10) + 's';
-                if (Math.random() > 0.7) p.style.background = '#fff';
-                container.appendChild(p);
-            }
-        }
-
-        createParticles();
-        renderTasks();
     </script>
 </body>
 </html>
+
 
