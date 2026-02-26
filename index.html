@@ -46,9 +46,9 @@
         }
 
         @keyframes float {
-            0% { transform: translateY(100vh); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
+            0%   { transform: translateY(100vh); opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 1; }
             100% { transform: translateY(-100px); opacity: 0; }
         }
 
@@ -71,9 +71,7 @@
             gap: 10px;
         }
 
-        .header .et i {
-            font-size: 1.1rem;
-        }
+        .header .et i { font-size: 1.1rem; }
 
         .header h1 {
             font-size: 3.5rem;
@@ -129,14 +127,8 @@
             flex-shrink: 0;
         }
 
-        .music-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .music-btn i {
-            color: #0a0a0a;
-            font-size: 1.1rem;
-        }
+        .music-btn:hover { transform: scale(1.1); }
+        .music-btn i { color: #0a0a0a; font-size: 1.1rem; }
 
         .music-info {
             display: flex;
@@ -144,17 +136,8 @@
             gap: 2px;
         }
 
-        .music-title {
-            font-size: 0.8rem;
-            color: #c9a84c;
-            letter-spacing: 2px;
-        }
-
-        .music-sub {
-            font-size: 0.7rem;
-            color: #555;
-            letter-spacing: 1px;
-        }
+        .music-title { font-size: 0.8rem; color: #c9a84c; letter-spacing: 2px; }
+        .music-sub   { font-size: 0.7rem; color: #555;    letter-spacing: 1px; }
 
         .music-bars {
             display: flex;
@@ -182,8 +165,53 @@
             to   { transform: scaleY(1);   opacity: 1; }
         }
 
-        .music-bars.paused span {
-            animation-play-state: paused;
+        .music-bars.paused span { animation-play-state: paused; }
+
+        /* Photo */
+        .photo-section {
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+            gap: 16px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .gold-line {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+        }
+
+        .photo-label {
+            color: #c9a84c;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .photo-frame {
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(201, 168, 76, 0.15);
+            width: 100%;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-frame img:hover {
+            transform: scale(1.02);
         }
 
         /* Compte à rebours */
@@ -239,9 +267,7 @@
             gap: 12px;
         }
 
-        .todo-section h2 i {
-            font-size: 1.3rem;
-        }
+        .todo-section h2 i { font-size: 1.3rem; }
 
         /* Barre de progression */
         .progress-container {
@@ -288,13 +314,8 @@
             letter-spacing: 0.5px;
         }
 
-        .add-task input:focus {
-            border-color: #c9a84c;
-        }
-
-        .add-task input::placeholder {
-            color: #444;
-        }
+        .add-task input:focus  { border-color: #c9a84c; }
+        .add-task input::placeholder { color: #444; }
 
         .add-task select {
             background: rgba(255,255,255,0.05);
@@ -308,9 +329,7 @@
             cursor: pointer;
         }
 
-        .add-task select option {
-            background: #1a1a1a;
-        }
+        .add-task select option { background: #1a1a1a; }
 
         .add-task button {
             background: linear-gradient(135deg, #c9a84c, #f5e6c8);
@@ -326,12 +345,9 @@
             justify-content: center;
         }
 
-        .add-task button:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
+        .add-task button:hover { transform: scale(1.05); opacity: 0.9; }
 
-        /* Filtres catégories */
+        /* Filtres */
         .filters {
             display: flex;
             gap: 8px;
@@ -355,9 +371,7 @@
             gap: 6px;
         }
 
-        .filter-btn i {
-            font-size: 0.9rem;
-        }
+        .filter-btn i { font-size: 0.9rem; }
 
         .filter-btn.active,
         .filter-btn:hover {
@@ -387,7 +401,7 @@
 
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         .todo-item:hover {
@@ -395,16 +409,10 @@
             border-color: rgba(201, 168, 76, 0.2);
         }
 
-        .todo-item.done {
-            opacity: 0.4;
-        }
+        .todo-item.done { opacity: 0.4; }
+        .todo-item.done .task-text { text-decoration: line-through; color: #555; }
 
-        .todo-item.done .task-text {
-            text-decoration: line-through;
-            color: #555;
-        }
-
-        /* Checkbox custom */
+        /* Checkbox */
         .custom-checkbox {
             width: 24px;
             height: 24px;
@@ -423,22 +431,10 @@
             border-color: #c9a84c;
         }
 
-        .custom-checkbox.checked i {
-            color: #0a0a0a;
-            font-size: 0.85rem;
-        }
+        .custom-checkbox.checked i { color: #0a0a0a; font-size: 0.85rem; }
 
-        /* Infos tâche */
-        .task-info {
-            flex: 1;
-        }
-
-        .task-text {
-            font-size: 0.9rem;
-            color: #f0f0f0;
-            margin-bottom: 5px;
-            letter-spacing: 0.3px;
-        }
+        .task-info  { flex: 1; }
+        .task-text  { font-size: 0.9rem; color: #f0f0f0; margin-bottom: 5px; letter-spacing: 0.3px; }
 
         .task-category {
             font-size: 0.7rem;
@@ -450,9 +446,7 @@
             letter-spacing: 0.5px;
         }
 
-        .task-category i {
-            font-size: 0.8rem;
-        }
+        .task-category i { font-size: 0.8rem; }
 
         .cat-lieu    { background: rgba(100,149,237,0.15); color: #6495ed; }
         .cat-tenue   { background: rgba(255,182,193,0.15); color: #ffb6c1; }
@@ -461,7 +455,6 @@
         .cat-invites { background: rgba(221,160,221,0.15); color: #dda0dd; }
         .cat-autre   { background: rgba(255,255,255,0.08); color: #aaa; }
 
-        /* Bouton supprimer */
         .delete-btn {
             background: transparent;
             border: none;
@@ -474,11 +467,8 @@
             align-items: center;
         }
 
-        .delete-btn:hover {
-            color: #e74c3c;
-        }
+        .delete-btn:hover { color: #e74c3c; }
 
-        /* Message vide */
         .empty-msg {
             text-align: center;
             color: #444;
@@ -489,12 +479,12 @@
 
         /* Responsive */
         @media (max-width: 600px) {
-            .header h1 { font-size: 2.5rem; }
-            .countdown { gap: 12px; }
-            .countdown-item { padding: 15px; min-width: 65px; }
-            .countdown-item span { font-size: 1.8rem; }
-            .add-task { flex-wrap: wrap; }
-            .add-task select { width: 100%; }
+            .header h1          { font-size: 2.5rem; }
+            .countdown          { gap: 12px; }
+            .countdown-item     { padding: 15px; min-width: 65px; }
+            .countdown-item span{ font-size: 1.8rem; }
+            .add-task           { flex-wrap: wrap; }
+            .add-task select    { width: 100%; }
         }
     </style>
 </head>
@@ -540,6 +530,20 @@
             <span></span>
             <span></span>
         </div>
+    </div>
+
+    <!-- Photo -->
+    <div class="photo-section">
+        <div class="gold-line"></div>
+        <p class="photo-label">
+            <i class="ph ph-heart"></i>
+            Mélina &amp; Jordan
+            <i class="ph ph-heart"></i>
+        </p>
+        <div class="photo-frame">
+            <img src="photo.jpeg" alt="Mélina & Jordan" />
+        </div>
+        <div class="gold-line"></div>
     </div>
 
     <!-- Compte à rebours -->
@@ -638,15 +642,15 @@
 
         // ── DONNÉES ───────────────────────────────────────────────
         const categories = {
-            lieu:    { label: 'Lieu',     icon: 'ph-map-pin',    css: 'cat-lieu' },
-            tenue:   { label: 'Tenues',   icon: 'ph-dress',      css: 'cat-tenue' },
-            repas:   { label: 'Traiteur', icon: 'ph-fork-knife', css: 'cat-repas' },
-            deco:    { label: 'Déco',     icon: 'ph-sparkle',    css: 'cat-deco' },
+            lieu:    { label: 'Lieu',     icon: 'ph-map-pin',    css: 'cat-lieu'    },
+            tenue:   { label: 'Tenues',   icon: 'ph-dress',      css: 'cat-tenue'   },
+            repas:   { label: 'Traiteur', icon: 'ph-fork-knife', css: 'cat-repas'   },
+            deco:    { label: 'Déco',     icon: 'ph-sparkle',    css: 'cat-deco'    },
             invites: { label: 'Invités',  icon: 'ph-envelope',   css: 'cat-invites' },
-            autre:   { label: 'Autre',    icon: 'ph-push-pin',   css: 'cat-autre' },
+            autre:   { label: 'Autre',    icon: 'ph-push-pin',   css: 'cat-autre'   },
         };
 
-        let tasks = JSON.parse(localStorage.getItem('weddingTasks') || '[]');
+        let tasks         = JSON.parse(localStorage.getItem('weddingTasks') || '[]');
         let currentFilter = 'all';
 
         function saveTasks() {
@@ -659,7 +663,6 @@
             const cat   = document.getElementById('categorySelect').value;
             const text  = input.value.trim();
             if (!text) return;
-
             tasks.push({ id: Date.now(), text, cat, done: false });
             saveTasks();
             input.value = '';
@@ -693,7 +696,7 @@
 
         // ── RENDU ─────────────────────────────────────────────────
         function renderTasks() {
-            const list = document.getElementById('todoList');
+            const list     = document.getElementById('todoList');
             const filtered = currentFilter === 'all'
                 ? tasks
                 : tasks.filter(t => t.cat === currentFilter);
@@ -701,7 +704,8 @@
             const done  = tasks.filter(t => t.done).length;
             const total = tasks.length;
             const pct   = total ? Math.round((done / total) * 100) : 0;
-            document.getElementById('progressBar').style.width = pct + '%';
+
+            document.getElementById('progressBar').style.width  = pct + '%';
             document.getElementById('progressText').textContent =
                 `${done} / ${total} tâche${total > 1 ? 's' : ''} complétée${done > 1 ? 's' : ''}`;
 
@@ -746,8 +750,8 @@
 
             const days    = Math.floor(diff / 86400000);
             const hours   = Math.floor((diff % 86400000) / 3600000);
-            const minutes = Math.floor((diff % 3600000) / 60000);
-            const seconds = Math.floor((diff % 60000) / 1000);
+            const minutes = Math.floor((diff % 3600000)  / 60000);
+            const seconds = Math.floor((diff % 60000)    / 1000);
 
             document.getElementById('days').textContent    = String(days).padStart(2, '0');
             document.getElementById('hours').textContent   = String(hours).padStart(2, '0');
