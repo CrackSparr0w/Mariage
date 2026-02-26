@@ -380,6 +380,43 @@
             .countdown-item  { padding: 15px 18px; min-width: 65px; }
             .add-task        { flex-wrap: wrap; }
             .add-task select { width: 100%; }
+
+            .photo-section {
+    z-index: 1;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.gold-line {
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #c9a84c, transparent);
+    margin: 0 auto 30px auto;
+}
+
+.photo-label {
+    color: #c9a84c;
+    letter-spacing: 5px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.photo-frame {
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 0 40px rgba(201, 168, 76, 0.1);
+}
+
+.photo-frame img {
+    width: 100%;
+    display: block;
+}
+
         }
     </style>
 </head>
@@ -598,6 +635,16 @@
         createParticles();
         renderTasks();
     </script>
+    
+    <div class="photo-section">
+    <div class="gold-line"></div>
+    <p class="photo-label"><i class="ph ph-heart"></i> Mélina & Jordan <i class="ph ph-heart"></i></p>
+    <div class="photo-frame">
+        <img src="photo.jpg" alt="Mélina & Jordan" />
+    </div>
+</div>
+
 
 </body>
 </html>
+
