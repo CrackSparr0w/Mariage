@@ -1,3 +1,6 @@
+Voilà le code complet ! Copie-colle tout ça :
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -146,166 +149,68 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-        }
-
-        .progress-container {
-            background: rgba(255,255,255,0.05);
-            border-radius: 50px;
-            height: 8px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #c9a84c, #f5e6c8);
-            border-radius: 50px;
-            transition: width 0.5s ease;
-        }
-
-        .progress-text {
-            text-align: right;
-            font-size: 0.75rem;
-            color: #666;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-        }
-
-        .add-task {
-            display: flex;
             gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        .add-task input {
-            flex: 1;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(201, 168, 76, 0.3);
-            border-radius: 10px;
-            padding: 14px 18px;
-            color: #f5f5f5;
-            font-size: 0.9rem;
-            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
-            outline: none;
-            transition: border 0.3s;
-            letter-spacing: 0.5px;
-        }
-
-        .add-task input:focus {
-            border-color: #c9a84c;
-        }
-
-        .add-task input::placeholder {
-            color: #444;
-        }
-
-        .add-task select {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(201, 168, 76, 0.3);
-            border-radius: 10px;
-            padding: 14px 12px;
-            color: #f5f5f5;
-            font-size: 0.82rem;
-            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .add-task select option {
-            background: #1a1a1a;
-        }
-
-        .add-task button {
-            background: linear-gradient(135deg, #c9a84c, #f5e6c8);
-            border: none;
-            border-radius: 10px;
-            padding: 14px 20px;
-            color: #0a0a0a;
-            font-size: 1.3rem;
-            cursor: pointer;
-            transition: transform 0.2s, opacity 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .add-task button:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
         }
 
         .filters {
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+            gap: 10px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .filter-btn {
             background: transparent;
-            border: 1px solid rgba(201, 168, 76, 0.3);
-            border-radius: 50px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            color: #666;
             padding: 6px 16px;
-            color: #888;
-            font-size: 0.75rem;
+            border-radius: 20px;
             cursor: pointer;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             transition: all 0.3s;
-            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            font-family: inherit;
         }
-
-        .filter-btn i { font-size: 0.9rem; }
 
         .filter-btn.active,
         .filter-btn:hover {
-            background: rgba(201, 168, 76, 0.15);
             border-color: #c9a84c;
             color: #c9a84c;
         }
 
-        .todo-list {
+        .task-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
+            margin-bottom: 25px;
         }
 
-        .todo-item {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 12px;
-            padding: 16px 20px;
+        .task-item {
             display: flex;
             align-items: center;
             gap: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 14px 16px;
             transition: all 0.3s;
-            animation: slideIn 0.3s ease;
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .todo-item:hover {
-            background: rgba(201, 168, 76, 0.05);
+        .task-item:hover {
             border-color: rgba(201, 168, 76, 0.2);
         }
 
-        .todo-item.done { opacity: 0.4; }
-        .todo-item.done .task-text {
-            text-decoration: line-through;
-            color: #555;
+        .task-item.done {
+            opacity: 0.4;
         }
 
         .custom-checkbox {
-            width: 24px;
-            height: 24px;
-            border: 2px solid rgba(201, 168, 76, 0.4);
-            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            border-radius: 6px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -315,114 +220,197 @@
         }
 
         .custom-checkbox.checked {
-            background: linear-gradient(135deg, #c9a84c, #f5e6c8);
+            background: rgba(201, 168, 76, 0.2);
             border-color: #c9a84c;
         }
 
-        .custom-checkbox.checked i {
-            color: #0a0a0a;
-            font-size: 0.85rem;
+        .custom-checkbox i {
+            color: #c9a84c;
+            font-size: 0.9rem;
         }
 
-        .task-info { flex: 1; }
+        .task-info {
+            flex: 1;
+        }
 
         .task-text {
-            font-size: 0.9rem;
-            color: #f0f0f0;
-            margin-bottom: 5px;
-            letter-spacing: 0.3px;
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            margin-bottom: 4px;
+        }
+
+        .task-item.done .task-text {
+            text-decoration: line-through;
+            color: #555;
         }
 
         .task-category {
-            font-size: 0.7rem;
-            padding: 3px 10px;
-            border-radius: 50px;
-            display: inline-flex;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
             align-items: center;
-            gap: 5px;
-            letter-spacing: 0.5px;
+            gap: 4px;
         }
 
-        .task-category i { font-size: 0.8rem; }
-
-        .cat-lieu    { background: rgba(100,149,237,0.15); color: #6495ed; }
-        .cat-tenue   { background: rgba(255,182,193,0.15); color: #ffb6c1; }
-        .cat-repas   { background: rgba(144,238,144,0.15); color: #90ee90; }
-        .cat-deco    { background: rgba(255,215,0,0.15);   color: #ffd700; }
-        .cat-invites { background: rgba(221,160,221,0.15); color: #dda0dd; }
-        .cat-autre   { background: rgba(255,255,255,0.08); color: #aaa;    }
+        .cat-venue    { color: #9b8ec4; }
+        .cat-tenues   { color: #c4958e; }
+        .cat-traiteur { color: #8ec4a0; }
+        .cat-deco     { color: #c4bc8e; }
+        .cat-musique  { color: #8eafc4; }
+        .cat-admin    { color: #c4a88e; }
+        .cat-autre    { color: #888; }
 
         .delete-btn {
             background: transparent;
             border: none;
             color: #333;
-            font-size: 1.1rem;
             cursor: pointer;
-            transition: color 0.3s;
             padding: 4px;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .delete-btn:hover {
+            color: #c9a84c;
+        }
+
+        .add-task {
             display: flex;
-            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .delete-btn:hover { color: #e74c3c; }
+        .add-task input {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: #f5f5f5;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
 
-        .empty-msg {
-            text-align: center;
+        .add-task input:focus {
+            border-color: rgba(201, 168, 76, 0.5);
+        }
+
+        .add-task input::placeholder {
             color: #444;
-            font-size: 0.85rem;
-            padding: 40px;
-            letter-spacing: 3px;
         }
 
+        .add-task select {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: #888;
+            font-family: inherit;
+            font-size: 0.8rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .add-task select option {
+            background: #1a1a1a;
+        }
+
+        .add-task button {
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 10px;
+            padding: 12px 20px;
+            color: #c9a84c;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .add-task button:hover {
+            background: rgba(201, 168, 76, 0.2);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #c9a84c, #f5e6c8);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #555;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        /* PHOTO SECTION */
+        .photo-section {
+            z-index: 1;
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .gold-line {
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #c9a84c, transparent);
+            margin: 0 auto 30px auto;
+        }
+
+        .photo-label {
+            color: #c9a84c;
+            letter-spacing: 5px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .photo-frame {
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+            max-width: 350px;
+            margin: 0 auto;
+            box-shadow: 0 0 40px rgba(201, 168, 76, 0.1);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            display: block;
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 600px) {
-            .header h1       { font-size: 2.2rem; }
+            .header h1           { font-size: 2.2rem; }
             .countdown-item span { font-size: 1.8rem; }
-            .countdown-item  { padding: 15px 18px; min-width: 65px; }
-            .add-task        { flex-wrap: wrap; }
-            .add-task select { width: 100%; }
+            .countdown-item      { padding: 15px 18px; min-width: 65px; }
+            .add-task            { flex-wrap: wrap; }
+            .add-task select     { width: 100%; }
+        }
 
-            .photo-section {
-    z-index: 1;
-    text-align: center;
-    margin-top: 60px;
-    margin-bottom: 40px;
-}
-@media (max-width: 480px) {
-    .photo-frame {
-        max-width: 280px;
-        border-radius: 12px;
-    }
-}
-
-.gold-line {
-    width: 100px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #c9a84c, transparent);
-    margin: 0 auto 30px auto;
-}
-
-.photo-label {
-    color: #c9a84c;
-    letter-spacing: 5px;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
-
-.photo-frame {
-    border: 1px solid rgba(201, 168, 76, 0.3);
-    border-radius: 16px;
-    overflow: hidden;
-    max-width: 350px;
-    margin: 0 auto;
-    box-shadow: 0 0 40px rgba(201, 168, 76, 0.1);
-}
-
-.photo-frame img {
-    width: 100%;
-    display: block;
-}
-
+        @media (max-width: 480px) {
+            .photo-frame {
+                max-width: 260px;
+                border-radius: 12px;
+            }
         }
     </style>
 </head>
@@ -431,89 +419,75 @@
     <div class="particles" id="particles"></div>
 
     <div class="header">
-        <p class="et"><i class="ph ph-sparkle"></i> Le Mariage de <i class="ph ph-sparkle"></i></p>
+        <div class="et">✦ &nbsp; Mariage &nbsp; ✦</div>
         <h1>Mélina & Jordan</h1>
-        <p class="date"><i class="ph ph-calendar-heart"></i> 29 Août 2026</p>
+        <div class="date">
+            <i class="ph ph-calendar-blank"></i>
+            29 Août 2026
+        </div>
     </div>
 
     <div class="countdown">
-        <div class="countdown-item">
-            <span id="days">--</span>
-            <p>Jours</p>
-        </div>
-        <div class="countdown-item">
-            <span id="hours">--</span>
-            <p>Heures</p>
-        </div>
-        <div class="countdown-item">
-            <span id="minutes">--</span>
-            <p>Minutes</p>
-        </div>
-        <div class="countdown-item">
-            <span id="seconds">--</span>
-            <p>Secondes</p>
-        </div>
+        <div class="countdown-item"><span id="days">00</span><p>Jours</p></div>
+        <div class="countdown-item"><span id="hours">00</span><p>Heures</p></div>
+        <div class="countdown-item"><span id="minutes">00</span><p>Minutes</p></div>
+        <div class="countdown-item"><span id="seconds">00</span><p>Secondes</p></div>
     </div>
 
     <div class="todo-section">
-        <h2><i class="ph ph-check-square"></i> Préparatifs <i class="ph ph-check-square"></i></h2>
+        <h2><i class="ph ph-list-checks"></i> À organiser</h2>
 
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+        <div class="progress-text" id="progressText">0 tâche complétée</div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterTasks('all', this)">Tout</button>
+            <button class="filter-btn" onclick="filterTasks('venue', this)">Lieu</button>
+            <button class="filter-btn" onclick="filterTasks('tenues', this)">Tenues</button>
+            <button class="filter-btn" onclick="filterTasks('traiteur', this)">Traiteur</button>
+            <button class="filter-btn" onclick="filterTasks('deco', this)">Déco</button>
+            <button class="filter-btn" onclick="filterTasks('musique', this)">Musique</button>
+            <button class="filter-btn" onclick="filterTasks('admin', this)">Administratif</button>
+            <button class="filter-btn" onclick="filterTasks('autre', this)">Autre</button>
         </div>
-        <div class="progress-text" id="progressText">0 / 0 tâches complétées</div>
+
+        <div class="task-list" id="taskList"></div>
 
         <div class="add-task">
             <input type="text" id="taskInput" placeholder="Ajouter une tâche..." />
             <select id="categorySelect">
-                <option value="lieu">📍 Lieu</option>
-                <option value="tenue">👗 Tenue</option>
-                <option value="repas">🍽 Repas</option>
-                <option value="deco">🌸 Déco</option>
-                <option value="invites">💌 Invités</option>
-                <option value="autre">✦ Autre</option>
+                <option value="venue">Lieu</option>
+                <option value="tenues">Tenues</option>
+                <option value="traiteur">Traiteur</option>
+                <option value="deco">Déco</option>
+                <option value="musique">Musique</option>
+                <option value="admin">Administratif</option>
+                <option value="autre">Autre</option>
             </select>
             <button onclick="addTask()"><i class="ph ph-plus"></i></button>
         </div>
+    </div>
 
-        <div class="filters">
-            <button class="filter-btn active" onclick="filterTasks('all', this)">
-                <i class="ph ph-squares-four"></i> Tout
-            </button>
-            <button class="filter-btn" onclick="filterTasks('lieu', this)">
-                <i class="ph ph-map-pin"></i> Lieu
-            </button>
-            <button class="filter-btn" onclick="filterTasks('tenue', this)">
-                <i class="ph ph-dress"></i> Tenue
-            </button>
-            <button class="filter-btn" onclick="filterTasks('repas', this)">
-                <i class="ph ph-fork-knife"></i> Repas
-            </button>
-            <button class="filter-btn" onclick="filterTasks('deco', this)">
-                <i class="ph ph-flower"></i> Déco
-            </button>
-            <button class="filter-btn" onclick="filterTasks('invites', this)">
-                <i class="ph ph-envelope"></i> Invités
-            </button>
-            <button class="filter-btn" onclick="filterTasks('autre', this)">
-                <i class="ph ph-star"></i> Autre
-            </button>
+    <div class="photo-section">
+        <div class="gold-line"></div>
+        <p class="photo-label"><i class="ph ph-heart"></i> &nbsp; Mélina & Jordan &nbsp; <i class="ph ph-heart"></i></p>
+        <div class="photo-frame">
+            <img src="photo.jpeg" alt="Mélina & Jordan" />
         </div>
-
-        <div class="todo-list" id="todoList"></div>
     </div>
 
     <script>
-        const CATEGORIES = {
-            lieu:    { label: 'Lieu',    icon: 'ph-map-pin'    },
-            tenue:   { label: 'Tenue',   icon: 'ph-dress'      },
-            repas:   { label: 'Repas',   icon: 'ph-fork-knife' },
-            deco:    { label: 'Déco',    icon: 'ph-flower'     },
-            invites: { label: 'Invités', icon: 'ph-envelope'   },
-            autre:   { label: 'Autre',   icon: 'ph-star'       },
+        const categories = {
+            venue:    { label: 'Lieu',           icon: 'ph-map-pin' },
+            tenues:   { label: 'Tenues',         icon: 'ph-dress' },
+            traiteur: { label: 'Traiteur',       icon: 'ph-fork-knife' },
+            deco:     { label: 'Déco',           icon: 'ph-flower' },
+            musique:  { label: 'Musique',        icon: 'ph-music-note' },
+            admin:    { label: 'Administratif',  icon: 'ph-file-text' },
+            autre:    { label: 'Autre',          icon: 'ph-tag' },
         };
 
-        let tasks         = JSON.parse(localStorage.getItem('weddingTasks') || '[]');
+        let tasks = JSON.parse(localStorage.getItem('weddingTasks') || '[]');
         let currentFilter = 'all';
 
         function saveTasks() {
@@ -521,30 +495,28 @@
         }
 
         function renderTasks() {
-            const list    = document.getElementById('todoList');
-            const visible = currentFilter === 'all'
-                ? tasks
-                : tasks.filter(t => t.category === currentFilter);
+            const list = document.getElementById('taskList');
+            const filtered = currentFilter === 'all' ? tasks : tasks.filter(t => t.category === currentFilter);
 
             const done  = tasks.filter(t => t.done).length;
             const total = tasks.length;
-            const pct   = total === 0 ? 0 : Math.round((done / total) * 100);
+            const pct   = total ? Math.round((done / total) * 100) : 0;
 
-            document.getElementById('progressBar').style.width = pct + '%';
+            document.getElementById('progressFill').style.width = pct + '%';
             document.getElementById('progressText').textContent =
+                total === 0 ? 'Aucune tâche' :
                 `${done} / ${total} tâche${total > 1 ? 's' : ''} complétée${done > 1 ? 's' : ''}`;
 
-            if (visible.length === 0) {
-                list.innerHTML = '<p class="empty-msg">✦ &nbsp; Aucune tâche &nbsp; ✦</p>';
+            if (filtered.length === 0) {
+                list.innerHTML = '<p style="text-align:center;color:#333;font-size:0.85rem;letter-spacing:2px;padding:30px 0">Aucune tâche</p>';
                 return;
             }
 
-            list.innerHTML = visible.map(task => {
-                const cat  = CATEGORIES[task.category] || CATEGORIES.autre;
-                const done = task.done ? 'done' : '';
-                const chk  = task.done ? 'checked' : '';
+            list.innerHTML = filtered.map(task => {
+                const cat = categories[task.category];
+                const chk = task.done ? 'checked' : '';
                 return `
-                <div class="todo-item ${done}" id="task-${task.id}">
+                <div class="task-item ${task.done ? 'done' : ''}">
                     <div class="custom-checkbox ${chk}" onclick="toggleTask(${task.id})">
                         ${task.done ? '<i class="ph ph-check"></i>' : ''}
                     </div>
@@ -565,14 +537,12 @@
             const input = document.getElementById('taskInput');
             const text  = input.value.trim();
             if (!text) return;
-
             tasks.push({
                 id:       Date.now(),
                 text:     text,
                 category: document.getElementById('categorySelect').value,
                 done:     false
             });
-
             input.value = '';
             saveTasks();
             renderTasks();
@@ -641,18 +611,8 @@
         createParticles();
         renderTasks();
     </script>
-    
-    <div class="photo-section">
-    <div class="gold-line"></div>
-    <p class="photo-label"><i class="ph ph-heart"></i> Mélina & Jordan <i class="ph ph-heart"></i></p>
-    <div class="photo-frame">
-        <img src="photo.jpeg" alt="Mélina & Jordan" />
-    </div>
-</div>
-
-
 </body>
 </html>
+```
 
-
-
+Copie tout ça sur GitHub et ça devrait être nickel ! 😊
