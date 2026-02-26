@@ -1,6 +1,3 @@
-Voilà le code complet ! Copie-colle tout ça :
-
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -52,6 +49,122 @@ Voilà le code complet ! Copie-colle tout ça :
             10%  { opacity: 1; }
             90%  { opacity: 1; }
             100% { transform: translateY(-100px); opacity: 0; }
+        }
+
+        /* MUSIC PLAYER */
+        .music-player {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 50px;
+            padding: 10px 18px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(201, 168, 76, 0.1);
+            transition: all 0.3s;
+        }
+
+        .music-player:hover {
+            border-color: rgba(201, 168, 76, 0.6);
+            box-shadow: 0 0 40px rgba(201, 168, 76, 0.2);
+        }
+
+        .play-btn {
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #c9a84c;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .play-btn:hover {
+            background: rgba(201, 168, 76, 0.25);
+        }
+
+        .music-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .music-title {
+            font-size: 0.7rem;
+            color: #c9a84c;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .music-sub {
+            font-size: 0.6rem;
+            color: #555;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 70px;
+            height: 2px;
+            background: rgba(201, 168, 76, 0.2);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            background: #c9a84c;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .volume-icon {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .music-equalizer {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 16px;
+        }
+
+        .eq-bar {
+            width: 3px;
+            background: #c9a84c;
+            border-radius: 2px;
+            animation: eq 0.8s ease-in-out infinite alternate;
+        }
+
+        .eq-bar:nth-child(1) { height: 6px;  animation-delay: 0s; }
+        .eq-bar:nth-child(2) { height: 12px; animation-delay: 0.2s; }
+        .eq-bar:nth-child(3) { height: 8px;  animation-delay: 0.4s; }
+        .eq-bar:nth-child(4) { height: 14px; animation-delay: 0.1s; }
+
+        @keyframes eq {
+            from { transform: scaleY(0.3); }
+            to   { transform: scaleY(1); }
+        }
+
+        .music-equalizer.paused .eq-bar {
+            animation-play-state: paused;
         }
 
         .header {
@@ -359,12 +472,11 @@ Voilà le code complet ! Copie-colle tout ça :
             margin-bottom: 20px;
         }
 
-        /* PHOTO SECTION */
         .photo-section {
             z-index: 1;
             text-align: center;
             margin-top: 60px;
-            margin-bottom: 40px;
+            margin-bottom: 80px;
             width: 100%;
         }
 
@@ -397,13 +509,15 @@ Voilà le code complet ! Copie-colle tout ça :
             display: block;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 600px) {
             .header h1           { font-size: 2.2rem; }
             .countdown-item span { font-size: 1.8rem; }
             .countdown-item      { padding: 15px 18px; min-width: 65px; }
             .add-task            { flex-wrap: wrap; }
             .add-task select     { width: 100%; }
+            .music-player        { bottom: 15px; right: 15px; padding: 8px 12px; gap: 8px; }
+            .volume-slider       { width: 50px; }
+            .music-info          { display: none; }
         }
 
         @media (max-width: 480px) {
@@ -417,6 +531,29 @@ Voilà le code complet ! Copie-colle tout ça :
 <body>
 
     <div class="particles" id="particles"></div>
+
+    <!-- LECTEUR MUSICAL -->
+    <div class="music-player">
+        <button class="play-btn" id="playBtn" onclick="toggleMusic()">
+            <i class="ph ph-play" id="playIcon"></i>
+        </button>
+        <div class="music-info">
+            <span class="music-title">Notre chanson</span>
+            <span class="music-sub">Mélina & Jordan</span>
+        </div>
+        <div class="music-equalizer paused" id="equalizer">
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+        </div>
+        <i class="ph ph-speaker-simple-low volume-icon"></i>
+        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" oninput="setVolume(this.value)" />
+    </div>
+
+    <audio id="audio" loop>
+        <source src="musique.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="header">
         <div class="et">✦ &nbsp; Mariage &nbsp; ✦</div>
@@ -477,17 +614,43 @@ Voilà le code complet ! Copie-colle tout ça :
     </div>
 
     <script>
+        // ── MUSIQUE ──────────────────────────────────────────────
+        const audio     = document.getElementById('audio');
+        const playIcon  = document.getElementById('playIcon');
+        const equalizer = document.getElementById('equalizer');
+        let isPlaying   = false;
+
+        audio.volume = 0.5;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                playIcon.className = 'ph ph-play';
+                equalizer.classList.add('paused');
+            } else {
+                audio.play();
+                playIcon.className = 'ph ph-pause';
+                equalizer.classList.remove('paused');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function setVolume(val) {
+            audio.volume = val;
+        }
+
+        // ── TÂCHES ───────────────────────────────────────────────
         const categories = {
-            venue:    { label: 'Lieu',           icon: 'ph-map-pin' },
-            tenues:   { label: 'Tenues',         icon: 'ph-dress' },
-            traiteur: { label: 'Traiteur',       icon: 'ph-fork-knife' },
-            deco:     { label: 'Déco',           icon: 'ph-flower' },
-            musique:  { label: 'Musique',        icon: 'ph-music-note' },
-            admin:    { label: 'Administratif',  icon: 'ph-file-text' },
-            autre:    { label: 'Autre',          icon: 'ph-tag' },
+            venue:    { label: 'Lieu',          icon: 'ph-map-pin'    },
+            tenues:   { label: 'Tenues',        icon: 'ph-dress'      },
+            traiteur: { label: 'Traiteur',      icon: 'ph-fork-knife' },
+            deco:     { label: 'Déco',          icon: 'ph-flower'     },
+            musique:  { label: 'Musique',       icon: 'ph-music-note' },
+            admin:    { label: 'Administratif', icon: 'ph-file-text'  },
+            autre:    { label: 'Autre',         icon: 'ph-tag'        },
         };
 
-        let tasks = JSON.parse(localStorage.getItem('weddingTasks') || '[]');
+        let tasks         = JSON.parse(localStorage.getItem('weddingTasks') || '[]');
         let currentFilter = 'all';
 
         function saveTasks() {
@@ -495,12 +658,11 @@ Voilà le code complet ! Copie-colle tout ça :
         }
 
         function renderTasks() {
-            const list = document.getElementById('taskList');
+            const list     = document.getElementById('taskList');
             const filtered = currentFilter === 'all' ? tasks : tasks.filter(t => t.category === currentFilter);
-
-            const done  = tasks.filter(t => t.done).length;
-            const total = tasks.length;
-            const pct   = total ? Math.round((done / total) * 100) : 0;
+            const done     = tasks.filter(t => t.done).length;
+            const total    = tasks.length;
+            const pct      = total ? Math.round((done / total) * 100) : 0;
 
             document.getElementById('progressFill').style.width = pct + '%';
             document.getElementById('progressText').textContent =
@@ -514,10 +676,9 @@ Voilà le code complet ! Copie-colle tout ça :
 
             list.innerHTML = filtered.map(task => {
                 const cat = categories[task.category];
-                const chk = task.done ? 'checked' : '';
                 return `
                 <div class="task-item ${task.done ? 'done' : ''}">
-                    <div class="custom-checkbox ${chk}" onclick="toggleTask(${task.id})">
+                    <div class="custom-checkbox ${task.done ? 'checked' : ''}" onclick="toggleTask(${task.id})">
                         ${task.done ? '<i class="ph ph-check"></i>' : ''}
                     </div>
                     <div class="task-info">
@@ -570,6 +731,7 @@ Voilà le code complet ! Copie-colle tout ça :
             renderTasks();
         }
 
+        // ── COMPTE À REBOURS ─────────────────────────────────────
         function updateCountdown() {
             const target = new Date('2026-08-29T00:00:00');
             const now    = new Date();
@@ -595,6 +757,7 @@ Voilà le code complet ! Copie-colle tout ça :
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
+        // ── PARTICULES ───────────────────────────────────────────
         function createParticles() {
             const container = document.getElementById('particles');
             for (let i = 0; i < 40; i++) {
@@ -613,6 +776,3 @@ Voilà le code complet ! Copie-colle tout ça :
     </script>
 </body>
 </html>
-```
-
-Copie tout ça sur GitHub et ça devrait être nickel ! 😊
