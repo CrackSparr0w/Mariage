@@ -24,18 +24,21 @@
             overflow-x: hidden;
         }
 
-        /* PARTICULES */
+        /* Particules */
         .particles {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 0;
         }
 
         .particle {
             position: absolute;
-            width: 2px; height: 2px;
+            width: 2px;
+            height: 2px;
             background: #c9a84c;
             border-radius: 50%;
             animation: float linear infinite;
@@ -43,13 +46,13 @@
         }
 
         @keyframes float {
-            0%   { transform: translateY(100vh); opacity: 0; }
-            10%  { opacity: 1; }
-            90%  { opacity: 1; }
+            0% { transform: translateY(100vh); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
             100% { transform: translateY(-100px); opacity: 0; }
         }
 
-        /* HEADER */
+        /* Header */
         .header {
             text-align: center;
             margin-bottom: 50px;
@@ -58,191 +61,277 @@
 
         .header .et {
             color: #c9a84c;
-            font-size: 0.85rem;
+            font-size: 1rem;
             letter-spacing: 6px;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
         }
 
+        .header .et i {
+            font-size: 1.1rem;
+        }
+
         .header h1 {
-            font-size: 5rem;
+            font-size: 3.5rem;
             font-weight: normal;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             background: linear-gradient(135deg, #c9a84c, #f5e6c8, #c9a84c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-family: 'Georgia', 'Times New Roman', serif;
-            font-style: italic;
-            line-height: 1.1;
-            margin-bottom: 15px;
         }
 
         .header .date {
-            color: #666;
+            color: #888;
+            font-size: 0.85rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .header .date i {
+            color: #c9a84c;
+            font-size: 1rem;
+            -webkit-text-fill-color: #c9a84c;
+        }
+
+        /* Lecteur musical */
+        .music-player {
+            z-index: 1;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(201, 168, 76, 0.05);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 50px;
+            padding: 12px 24px;
+        }
+
+        .music-btn {
+            background: linear-gradient(135deg, #c9a84c, #f5e6c8);
+            border: none;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .music-btn i {
+            color: #0a0a0a;
+            font-size: 1.1rem;
+        }
+
+        .music-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .music-title {
             font-size: 0.8rem;
-            letter-spacing: 7px;
+            color: #c9a84c;
+            letter-spacing: 2px;
+        }
+
+        .music-sub {
+            font-size: 0.7rem;
+            color: #555;
+            letter-spacing: 1px;
+        }
+
+        .music-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 20px;
+        }
+
+        .music-bars span {
+            display: block;
+            width: 3px;
+            background: #c9a84c;
+            border-radius: 2px;
+            animation: bar 1s ease-in-out infinite alternate;
+        }
+
+        .music-bars span:nth-child(1) { height: 8px;  animation-delay: 0s; }
+        .music-bars span:nth-child(2) { height: 16px; animation-delay: 0.2s; }
+        .music-bars span:nth-child(3) { height: 10px; animation-delay: 0.4s; }
+        .music-bars span:nth-child(4) { height: 20px; animation-delay: 0.1s; }
+        .music-bars span:nth-child(5) { height: 6px;  animation-delay: 0.3s; }
+
+        @keyframes bar {
+            from { transform: scaleY(0.4); opacity: 0.6; }
+            to   { transform: scaleY(1);   opacity: 1; }
+        }
+
+        .music-bars.paused span {
+            animation-play-state: paused;
+        }
+
+        /* Compte à rebours */
+        .countdown {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 60px;
+            z-index: 1;
+        }
+
+        .countdown-item {
+            text-align: center;
+            background: rgba(201, 168, 76, 0.05);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 12px;
+            padding: 20px 25px;
+            min-width: 80px;
+        }
+
+        .countdown-item span {
+            display: block;
+            font-size: 2.5rem;
+            color: #c9a84c;
+            font-weight: bold;
+        }
+
+        .countdown-item p {
+            font-size: 0.65rem;
+            color: #666;
+            letter-spacing: 3px;
             text-transform: uppercase;
             margin-top: 5px;
+        }
+
+        /* Section Todo */
+        .todo-section {
+            z-index: 1;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .todo-section h2 {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: normal;
+            color: #c9a84c;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
         }
 
-        /* CARDS */
-        .card {
-            background: linear-gradient(145deg, #141414, #1a1a1a);
-            border: 1px solid #2a2a2a;
-            border-radius: 16px;
-            padding: 30px;
-            width: 100%;
-            max-width: 700px;
-            margin-bottom: 24px;
-            z-index: 1;
+        .todo-section h2 i {
+            font-size: 1.3rem;
         }
 
-        .card-title {
-            color: #c9a84c;
-            font-size: 0.75rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .card-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, #2a2a2a, transparent);
-        }
-
-        /* PHOTO */
-        .photo-container {
-            width: 100%;
-            height: 300px;
-            border-radius: 10px;
+        /* Barre de progression */
+        .progress-container {
+            background: rgba(255,255,255,0.05);
+            border-radius: 50px;
+            height: 8px;
+            margin-bottom: 10px;
             overflow: hidden;
-            background: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .photo-container img {
-            width: 100%;
+        .progress-bar {
             height: 100%;
-            object-fit: cover;
+            background: linear-gradient(90deg, #c9a84c, #f5e6c8);
+            border-radius: 50px;
+            transition: width 0.5s ease;
         }
 
-        .photo-placeholder {
-            color: #333;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            text-align: center;
+        .progress-text {
+            text-align: right;
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
         }
 
-        /* COMPTE À REBOURS */
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .countdown-item {
-            background: #111;
-            border: 1px solid #2a2a2a;
-            border-radius: 12px;
-            padding: 20px 24px;
-            text-align: center;
-            min-width: 90px;
-        }
-
-        .countdown-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #c9a84c;
-            line-height: 1;
-            font-family: 'Georgia', serif;
-        }
-
-        .countdown-label {
-            font-size: 0.6rem;
-            letter-spacing: 4px;
-            color: #555;
-            text-transform: uppercase;
-            margin-top: 8px;
-        }
-
-        /* TÂCHES */
-        .task-input-row {
+        /* Ajouter une tâche */
+        .add-task {
             display: flex;
             gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            margin-bottom: 30px;
         }
 
-        .task-input-row input {
+        .add-task input {
             flex: 1;
-            min-width: 180px;
-            background: #111;
-            border: 1px solid #2a2a2a;
-            border-radius: 8px;
-            padding: 12px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 10px;
+            padding: 14px 18px;
             color: #f5f5f5;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
             outline: none;
-            font-family: inherit;
-            transition: border 0.2s;
+            transition: border 0.3s;
+            letter-spacing: 0.5px;
         }
 
-        .task-input-row input:focus {
+        .add-task input:focus {
             border-color: #c9a84c;
         }
 
-        .task-input-row select {
-            background: #111;
-            border: 1px solid #2a2a2a;
-            border-radius: 8px;
-            padding: 12px 14px;
+        .add-task input::placeholder {
+            color: #444;
+        }
+
+        .add-task select {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 10px;
+            padding: 14px 12px;
             color: #f5f5f5;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
+            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
             outline: none;
-            font-family: inherit;
             cursor: pointer;
         }
 
-        .task-input-row select option {
+        .add-task select option {
             background: #1a1a1a;
         }
 
-        .btn-add {
-            background: linear-gradient(135deg, #c9a84c, #a07830);
+        .add-task button {
+            background: linear-gradient(135deg, #c9a84c, #f5e6c8);
             border: none;
-            border-radius: 8px;
-            padding: 12px 20px;
+            border-radius: 10px;
+            padding: 14px 20px;
             color: #0a0a0a;
-            font-size: 0.85rem;
-            font-weight: bold;
-            letter-spacing: 1px;
+            font-size: 1.3rem;
             cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-family: inherit;
-            transition: opacity 0.2s;
+            justify-content: center;
         }
 
-        .btn-add:hover { opacity: 0.85; }
+        .add-task button:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
 
-        /* FILTRES */
+        /* Filtres catégories */
         .filters {
             display: flex;
             gap: 8px;
@@ -252,213 +341,174 @@
 
         .filter-btn {
             background: transparent;
-            border: 1px solid #2a2a2a;
-            border-radius: 20px;
-            padding: 6px 14px;
-            color: #666;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 50px;
+            padding: 6px 16px;
+            color: #888;
             font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
             cursor: pointer;
-            font-family: inherit;
+            transition: all 0.3s;
+            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             gap: 6px;
-            transition: all 0.2s;
         }
 
+        .filter-btn i {
+            font-size: 0.9rem;
+        }
+
+        .filter-btn.active,
         .filter-btn:hover {
+            background: rgba(201, 168, 76, 0.15);
             border-color: #c9a84c;
             color: #c9a84c;
         }
 
-        .filter-btn.active {
-            background: #c9a84c;
-            border-color: #c9a84c;
-            color: #0a0a0a;
+        /* Liste des tâches */
+        .todo-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        /* PROGRESS */
-        .progress-bar {
-            background: #111;
-            border-radius: 10px;
-            height: 4px;
-            margin-bottom: 8px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(to right, #c9a84c, #f5e6c8);
-            border-radius: 10px;
-            transition: width 0.4s ease;
-        }
-
-        .progress-text {
-            color: #555;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-align: right;
-            margin-bottom: 16px;
-        }
-
-        /* TASK ITEMS */
-        .task-item {
+        .todo-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
+            padding: 16px 20px;
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 14px 0;
-            border-bottom: 1px solid #1e1e1e;
-            transition: opacity 0.2s;
+            gap: 15px;
+            transition: all 0.3s;
+            animation: slideIn 0.3s ease;
         }
 
-        .task-item:last-child { border-bottom: none; }
-        .task-item.done { opacity: 0.5; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
+        .todo-item:hover {
+            background: rgba(201, 168, 76, 0.05);
+            border-color: rgba(201, 168, 76, 0.2);
+        }
+
+        .todo-item.done {
+            opacity: 0.4;
+        }
+
+        .todo-item.done .task-text {
+            text-decoration: line-through;
+            color: #555;
+        }
+
+        /* Checkbox custom */
         .custom-checkbox {
-            width: 22px;
-            height: 22px;
-            border: 1px solid #3a3a3a;
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(201, 168, 76, 0.4);
             border-radius: 50%;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
             flex-shrink: 0;
-            transition: all 0.2s;
-            font-size: 0.75rem;
+            transition: all 0.3s;
         }
 
         .custom-checkbox.checked {
-            background: #c9a84c;
+            background: linear-gradient(135deg, #c9a84c, #f5e6c8);
             border-color: #c9a84c;
-            color: #0a0a0a;
         }
 
+        .custom-checkbox.checked i {
+            color: #0a0a0a;
+            font-size: 0.85rem;
+        }
+
+        /* Infos tâche */
         .task-info {
             flex: 1;
         }
 
         .task-text {
             font-size: 0.9rem;
-            margin-bottom: 4px;
-        }
-
-        .task-item.done .task-text {
-            text-decoration: line-through;
-            color: #555;
+            color: #f0f0f0;
+            margin-bottom: 5px;
+            letter-spacing: 0.3px;
         }
 
         .task-category {
             font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #555;
-            display: flex;
+            padding: 3px 10px;
+            border-radius: 50px;
+            display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
+            letter-spacing: 0.5px;
         }
 
+        .task-category i {
+            font-size: 0.8rem;
+        }
+
+        .cat-lieu    { background: rgba(100,149,237,0.15); color: #6495ed; }
+        .cat-tenue   { background: rgba(255,182,193,0.15); color: #ffb6c1; }
+        .cat-repas   { background: rgba(144,238,144,0.15); color: #90ee90; }
+        .cat-deco    { background: rgba(255,215,0,0.15);   color: #ffd700; }
+        .cat-invites { background: rgba(221,160,221,0.15); color: #dda0dd; }
+        .cat-autre   { background: rgba(255,255,255,0.08); color: #aaa; }
+
+        /* Bouton supprimer */
         .delete-btn {
             background: transparent;
             border: none;
             color: #333;
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 4px;
-            transition: color 0.2s;
-        }
-
-        .delete-btn:hover { color: #c0392b; }
-
-        /* MUSIQUE */
-        .music-player {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(145deg, #141414, #1e1e1e);
-            border: 1px solid #2a2a2a;
-            border-radius: 16px;
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            z-index: 100;
-            min-width: 220px;
-        }
-
-        .play-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #c9a84c, #a07830);
-            border: none;
-            color: #0a0a0a;
             font-size: 1.1rem;
             cursor: pointer;
+            transition: color 0.3s;
+            padding: 4px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: opacity 0.2s;
         }
 
-        .play-btn:hover { opacity: 0.85; }
-
-        .music-info {
-            flex: 1;
+        .delete-btn:hover {
+            color: #e74c3c;
         }
 
-        .music-title {
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #c9a84c;
-            margin-bottom: 4px;
-        }
-
-        .music-file {
-            font-size: 0.7rem;
+        /* Message vide */
+        .empty-msg {
+            text-align: center;
             color: #444;
-            letter-spacing: 1px;
+            font-size: 0.85rem;
+            padding: 40px;
+            letter-spacing: 3px;
         }
 
-        .eq-bars {
-            display: flex;
-            align-items: flex-end;
-            gap: 3px;
-            height: 20px;
-        }
-
-        .eq-bar {
-            width: 3px;
-            background: #c9a84c;
-            border-radius: 2px;
-            animation: eq 0.8s ease-in-out infinite alternate;
-        }
-
-        .eq-bar:nth-child(2) { animation-delay: 0.2s; }
-        .eq-bar:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes eq {
-            0%  { height: 4px; }
-            100%{ height: 18px; }
-        }
-
-        .eq-bars.paused .eq-bar { animation-play-state: paused; }
-
-        .volume-slider {
-            width: 60px;
-            accent-color: #c9a84c;
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 { font-size: 2.5rem; }
+            .countdown { gap: 12px; }
+            .countdown-item { padding: 15px; min-width: 65px; }
+            .countdown-item span { font-size: 1.8rem; }
+            .add-task { flex-wrap: wrap; }
+            .add-task select { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- PARTICULES -->
+    <!-- Particules -->
     <div class="particles" id="particles"></div>
 
-    <!-- HEADER -->
+    <!-- Audio -->
+    <audio id="bgMusic" loop>
+        <source src="musique.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Header -->
     <div class="header">
         <div class="et">
             <i class="ph ph-shooting-star"></i>
@@ -474,241 +524,212 @@
         </div>
     </div>
 
-    <!-- PHOTO -->
-    <div class="card">
-        <div class="card-title">
-            <i class="ph ph-image"></i>
-            Notre Photo
+    <!-- Lecteur musical -->
+    <div class="music-player">
+        <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+            <i class="ph ph-play" id="musicIcon"></i>
+        </button>
+        <div class="music-info">
+            <div class="music-title">♪ Notre Chanson</div>
+            <div class="music-sub">Mélina & Jordan</div>
         </div>
-        <div class="photo-container">
-            <img src="photo.jpg" alt="Mélina & Jordan"
-                 onerror="this.style.display='none';document.getElementById('photoPlaceholder').style.display='block'">
-            <div class="photo-placeholder" id="photoPlaceholder" style="display:none">
-                <i class="ph ph-image" style="font-size:2rem;color:#2a2a2a;display:block;margin-bottom:10px"></i>
-                Ajoutez votre photo<br>
-                <span style="font-size:0.7rem;color:#222">Uploadez photo.jpg sur GitHub</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- COMPTE À REBOURS -->
-    <div class="card">
-        <div class="card-title">
-            <i class="ph ph-hourglass"></i>
-            Compte à Rebours
-        </div>
-        <div class="countdown">
-            <div class="countdown-item">
-                <div class="countdown-number" id="days">00</div>
-                <div class="countdown-label">Jours</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="hours">00</div>
-                <div class="countdown-label">Heures</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="minutes">00</div>
-                <div class="countdown-label">Minutes</div>
-            </div>
-            <div class="countdown-item">
-                <div class="countdown-number" id="seconds">00</div>
-                <div class="countdown-label">Secondes</div>
-            </div>
+        <div class="music-bars paused" id="musicBars">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </div>
 
-    <!-- TÂCHES -->
-    <div class="card">
-        <div class="card-title">
+    <!-- Compte à rebours -->
+    <div class="countdown">
+        <div class="countdown-item">
+            <span id="days">00</span>
+            <p>Jours</p>
+        </div>
+        <div class="countdown-item">
+            <span id="hours">00</span>
+            <p>Heures</p>
+        </div>
+        <div class="countdown-item">
+            <span id="minutes">00</span>
+            <p>Minutes</p>
+        </div>
+        <div class="countdown-item">
+            <span id="seconds">00</span>
+            <p>Secondes</p>
+        </div>
+    </div>
+
+    <!-- Todo -->
+    <div class="todo-section">
+        <h2>
             <i class="ph ph-check-square"></i>
-            Liste des Tâches
-        </div>
+            Liste des tâches
+        </h2>
 
-        <div class="task-input-row">
-            <input type="text" id="taskInput" placeholder="Nouvelle tâche..." onkeydown="if(event.key==='Enter')addTask()">
-            <select id="taskCategory">
-                <option value="lieu">Lieu</option>
-                <option value="tenues">Tenues</option>
-                <option value="traiteur">Traiteur</option>
-                <option value="musique">Musique</option>
-                <option value="photos">Photos</option>
-                <option value="invites">Invités</option>
-                <option value="autre">Autre</option>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+        </div>
+        <div class="progress-text" id="progressText">0 / 0 tâches complétées</div>
+
+        <div class="add-task">
+            <input type="text" id="taskInput" placeholder="Nouvelle tâche..." />
+            <select id="categorySelect">
+                <option value="lieu">📍 Lieu</option>
+                <option value="tenue">👗 Tenues</option>
+                <option value="repas">🍽️ Traiteur</option>
+                <option value="deco">✨ Déco</option>
+                <option value="invites">💌 Invités</option>
+                <option value="autre">📌 Autre</option>
             </select>
-            <button class="btn-add" onclick="addTask()">
-                <i class="ph ph-plus"></i> Ajouter
+            <button onclick="addTask()">
+                <i class="ph ph-plus"></i>
             </button>
         </div>
 
         <div class="filters">
-            <button class="filter-btn active" onclick="setFilter('all', this)">
+            <button class="filter-btn active" onclick="filterTasks('all', this)">
                 <i class="ph ph-squares-four"></i> Tout
             </button>
-            <button class="filter-btn" onclick="setFilter('lieu', this)">
+            <button class="filter-btn" onclick="filterTasks('lieu', this)">
                 <i class="ph ph-map-pin"></i> Lieu
             </button>
-            <button class="filter-btn" onclick="setFilter('tenues', this)">
-                <i class="ph ph-coat-hanger"></i> Tenues
+            <button class="filter-btn" onclick="filterTasks('tenue', this)">
+                <i class="ph ph-dress"></i> Tenues
             </button>
-            <button class="filter-btn" onclick="setFilter('traiteur', this)">
+            <button class="filter-btn" onclick="filterTasks('repas', this)">
                 <i class="ph ph-fork-knife"></i> Traiteur
             </button>
-            <button class="filter-btn" onclick="setFilter('musique', this)">
-                <i class="ph ph-music-note"></i> Musique
+            <button class="filter-btn" onclick="filterTasks('deco', this)">
+                <i class="ph ph-sparkle"></i> Déco
             </button>
-            <button class="filter-btn" onclick="setFilter('photos', this)">
-                <i class="ph ph-camera"></i> Photos
+            <button class="filter-btn" onclick="filterTasks('invites', this)">
+                <i class="ph ph-envelope"></i> Invités
             </button>
-            <button class="filter-btn" onclick="setFilter('invites', this)">
-                <i class="ph ph-users"></i> Invités
-            </button>
-            <button class="filter-btn" onclick="setFilter('autre', this)">
-                <i class="ph ph-dots-three"></i> Autre
+            <button class="filter-btn" onclick="filterTasks('autre', this)">
+                <i class="ph ph-push-pin"></i> Autre
             </button>
         </div>
 
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill" style="width:0%"></div>
-        </div>
-        <div class="progress-text" id="progressText">Aucune tâche</div>
-
-        <div id="taskList"></div>
+        <div class="todo-list" id="todoList"></div>
     </div>
-
-    <!-- LECTEUR MUSIQUE -->
-    <div class="music-player">
-        <button class="play-btn" onclick="togglePlay()" id="playBtn">
-            <i class="ph ph-play" id="playIcon"></i>
-        </button>
-        <div class="music-info">
-            <div class="music-title">Notre Chanson</div>
-            <div class="music-file">musique.mp3</div>
-        </div>
-        <div class="eq-bars paused" id="eq">
-            <div class="eq-bar"></div>
-            <div class="eq-bar"></div>
-            <div class="eq-bar"></div>
-        </div>
-        <input type="range" class="volume-slider" min="0" max="1" step="0.01"
-               value="0.5" oninput="setVolume(this.value)">
-    </div>
-
-    <audio id="audio" src="musique.mp3" loop></audio>
 
     <script>
+        // ── MUSIQUE ───────────────────────────────────────────────
+        const audio     = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+        const musicBars = document.getElementById('musicBars');
+        let   isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicIcon.className = 'ph ph-play';
+                musicBars.classList.add('paused');
+            } else {
+                audio.play();
+                musicIcon.className = 'ph ph-pause';
+                musicBars.classList.remove('paused');
+            }
+            isPlaying = !isPlaying;
+        }
+
         // ── DONNÉES ───────────────────────────────────────────────
         const categories = {
-            lieu:     { label: 'Lieu',     icon: 'ph-map-pin' },
-            tenues:   { label: 'Tenues',   icon: 'ph-coat-hanger' },
-            traiteur: { label: 'Traiteur', icon: 'ph-fork-knife' },
-            musique:  { label: 'Musique',  icon: 'ph-music-note' },
-            photos:   { label: 'Photos',   icon: 'ph-camera' },
-            invites:  { label: 'Invités',  icon: 'ph-users' },
-            autre:    { label: 'Autre',    icon: 'ph-dots-three' }
+            lieu:    { label: 'Lieu',     icon: 'ph-map-pin',    css: 'cat-lieu' },
+            tenue:   { label: 'Tenues',   icon: 'ph-dress',      css: 'cat-tenue' },
+            repas:   { label: 'Traiteur', icon: 'ph-fork-knife', css: 'cat-repas' },
+            deco:    { label: 'Déco',     icon: 'ph-sparkle',    css: 'cat-deco' },
+            invites: { label: 'Invités',  icon: 'ph-envelope',   css: 'cat-invites' },
+            autre:   { label: 'Autre',    icon: 'ph-push-pin',   css: 'cat-autre' },
         };
 
-        let tasks         = JSON.parse(localStorage.getItem('weddingTasks') || '[]');
+        let tasks = JSON.parse(localStorage.getItem('weddingTasks') || '[]');
         let currentFilter = 'all';
-        let playing       = false;
-        const audio       = document.getElementById('audio');
-        audio.volume      = 0.5;
 
-        // ── TÂCHES ────────────────────────────────────────────────
         function saveTasks() {
             localStorage.setItem('weddingTasks', JSON.stringify(tasks));
         }
 
+        // ── AJOUTER ───────────────────────────────────────────────
         function addTask() {
             const input = document.getElementById('taskInput');
+            const cat   = document.getElementById('categorySelect').value;
             const text  = input.value.trim();
             if (!text) return;
-            tasks.push({
-                id:       Date.now(),
-                text:     text,
-                category: document.getElementById('taskCategory').value,
-                done:     false
-            });
-            input.value = '';
+
+            tasks.push({ id: Date.now(), text, cat, done: false });
             saveTasks();
+            input.value = '';
             renderTasks();
         }
 
+        document.getElementById('taskInput').addEventListener('keydown', e => {
+            if (e.key === 'Enter') addTask();
+        });
+
+        // ── TOGGLE ────────────────────────────────────────────────
         function toggleTask(id) {
             const t = tasks.find(t => t.id === id);
             if (t) { t.done = !t.done; saveTasks(); renderTasks(); }
         }
 
+        // ── SUPPRIMER ─────────────────────────────────────────────
         function deleteTask(id) {
             tasks = tasks.filter(t => t.id !== id);
             saveTasks();
             renderTasks();
         }
 
-        function setFilter(filter, btn) {
+        // ── FILTRER ───────────────────────────────────────────────
+        function filterTasks(filter, btn) {
             currentFilter = filter;
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             renderTasks();
         }
 
+        // ── RENDU ─────────────────────────────────────────────────
         function renderTasks() {
-            const list     = document.getElementById('taskList');
+            const list = document.getElementById('todoList');
             const filtered = currentFilter === 'all'
                 ? tasks
-                : tasks.filter(t => t.category === currentFilter);
+                : tasks.filter(t => t.cat === currentFilter);
 
             const done  = tasks.filter(t => t.done).length;
             const total = tasks.length;
             const pct   = total ? Math.round((done / total) * 100) : 0;
-
-            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressBar').style.width = pct + '%';
             document.getElementById('progressText').textContent =
-                total === 0 ? 'Aucune tâche' :
                 `${done} / ${total} tâche${total > 1 ? 's' : ''} complétée${done > 1 ? 's' : ''}`;
 
             if (filtered.length === 0) {
-                list.innerHTML = '<p style="text-align:center;color:#333;font-size:0.8rem;letter-spacing:2px;padding:30px 0">Aucune tâche</p>';
+                list.innerHTML = '<div class="empty-msg">✦ &nbsp; Aucune tâche &nbsp; ✦</div>';
                 return;
             }
 
-            list.innerHTML = filtered.map(task => {
-                const cat = categories[task.category] || categories['autre'];
+            list.innerHTML = filtered.map(t => {
+                const cat = categories[t.cat];
                 return `
-                <div class="task-item ${task.done ? 'done' : ''}">
-                    <div class="custom-checkbox ${task.done ? 'checked' : ''}" onclick="toggleTask(${task.id})">
-                        ${task.done ? '<i class="ph ph-check"></i>' : ''}
+                <div class="todo-item ${t.done ? 'done' : ''}">
+                    <div class="custom-checkbox ${t.done ? 'checked' : ''}"
+                         onclick="toggleTask(${t.id})">
+                        ${t.done ? '<i class="ph ph-check"></i>' : ''}
                     </div>
                     <div class="task-info">
-                        <div class="task-text">${task.text}</div>
-                        <span class="task-category">
-                            <i class="ph ${cat.icon}"></i> ${cat.label}
+                        <div class="task-text">${t.text}</div>
+                        <span class="task-category ${cat.css}">
+                            <i class="ph ${cat.icon}"></i>
+                            ${cat.label}
                         </span>
                     </div>
-                    <button class="delete-btn" onclick="deleteTask(${task.id})">
+                    <button class="delete-btn" onclick="deleteTask(${t.id})">
                         <i class="ph ph-trash"></i>
                     </button>
                 </div>`;
             }).join('');
-        }
-
-        // ── MUSIQUE ───────────────────────────────────────────────
-        function togglePlay() {
-            const playIcon = document.getElementById('playIcon');
-            const eq       = document.getElementById('eq');
-            if (playing) {
-                audio.pause();
-                playIcon.className = 'ph ph-play';
-                eq.classList.add('paused');
-            } else {
-                audio.play();
-                playIcon.className = 'ph ph-pause';
-                eq.classList.remove('paused');
-            }
-            playing = !playing;
-        }
-
-        function setVolume(v) {
-            audio.volume = v;
         }
 
         // ── COMPTE À REBOURS ──────────────────────────────────────
@@ -725,8 +746,8 @@
 
             const days    = Math.floor(diff / 86400000);
             const hours   = Math.floor((diff % 86400000) / 3600000);
-            const minutes = Math.floor((diff % 3600000)  / 60000);
-            const seconds = Math.floor((diff % 60000)    / 1000);
+            const minutes = Math.floor((diff % 3600000) / 60000);
+            const seconds = Math.floor((diff % 60000) / 1000);
 
             document.getElementById('days').textContent    = String(days).padStart(2, '0');
             document.getElementById('hours').textContent   = String(hours).padStart(2, '0');
