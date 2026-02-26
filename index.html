@@ -703,26 +703,49 @@
         }
 
         // ── RENDU ─────────────────────────────────────────────────
-        function renderTasks() {
-            const list     = document.getElementById('todoList');
+       function renderTasks() {
+    const list = document.getElementById('todoList');
 
-            // ✅ FIX : copie du tableau pour éviter le bug filtre "Tout"
-            const filtered = currentFilter === 'all'
-                ? [...tasks]
-                : tasks.filter(t => t.cat === currentFilter);
+    const filtered = currentFilter === 'all'
+        ? tasks
+        : tasks.filter(t => t.cat === currentFilter);
 
-            const done  = tasks.filter(t => t.done).length;
-            const total = tasks.length;
-            const pct   = total ? Math.round((done / total) * 100) : 0;
+    const done  = tasks.filter(t => t.done).length;
+    const total = tasks.length;
+    const pct   = total ? Math.round((done / total) * 100) : 0;
 
-            document.getElementById('progressBar').style.width  = pct + '%';
-            document.getElementById('progressText').textContent =
-                `${done} / ${total} tâche${total > 1 ? 's' : ''} complétée${done > 1 ? 's' : ''}`;
+    document.getElementById('progressBar').style.width  = pct + '%';
+    document.getElementById('progressText').textContent =
+        `${done} / ${total} tâche${total > 1 ? 's' : ''} complétée${done > 1 ? 's' : ''}`;
 
-            if (filtered.length === 0) {
-                list.innerHTML = '<div class="empty-msg">✦ &nbsp; Aucune tâche &nbsp; ✦</div>';
-                return;
-            }
+    if (filtered.length === 0) {
+        list.innerHTML = '<div class="empty-msg">✦ &nbsp; Aucune tâche &nbsp; ✦</div>';
+        return;
+    }
+
+    // ✅ FIX RÉEL : on sécurise cat pour ne jamais planter
+    list.innerHTML = filtered.map(t => {
+        const cat = categories[t.cat] || categories['autre'];
+        return `
+        <div class="todo-item ${t.done ? 'done' : ''}">
+            <div class="custom-checkbox ${t.done ? 'checked' : ''}"
+                 onclick="toggleTask(${t.id})">
+                ${t.done ? '<i class="ph ph-check"></i>' : ''}
+            </div>
+            <div class="task-info">
+                <div class="task-text">${t.text}</div>
+                <span class="task-category ${cat.css}">
+                    <i class="ph ${cat.icon}"></i>
+                    ${cat.label}
+                </span>
+            </div>
+            <button class="delete-btn" onclick="deleteTask(${t.id})">
+                <i class="ph ph-trash"></i>
+            </button>
+        </div>`;
+    }).join('');
+}
+
 
             list.innerHTML = filtered.map(t => {
                 const cat = categories[t.cat];
@@ -791,3 +814,4 @@
     </script>
 </body>
 </html>
+
