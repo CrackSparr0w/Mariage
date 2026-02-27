@@ -107,49 +107,37 @@
             -webkit-text-fill-color: #c9a84c;
         }
 
-        /* Lecteur musical */
-        .music-player {
-            z-index: 1;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            background: rgba(201, 168, 76, 0.05);
-            border: 1px solid rgba(201, 168, 76, 0.2);
-            border-radius: 50px;
-            padding: 12px 24px;
-        }
-
+        /* Bouton musique */
         .music-btn {
-            background: linear-gradient(135deg, #c9a84c, #f5e6c8);
-            border: none;
-            border-radius: 50%;
-            width: 38px;
-            height: 38px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(10,10,10,0.8);
+            border: 1px solid rgba(201,168,76,0.3);
+            border-radius: 50px;
+            padding: 10px 18px;
+            color: #c9a84c;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.2s;
-            flex-shrink: 0;
+            gap: 10px;
+            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
         }
 
-        .music-btn:hover { transform: scale(1.1); }
-        .music-btn i { color: #0a0a0a; font-size: 1.1rem; }
-
-        .music-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
+        .music-btn:hover {
+            border-color: #c9a84c;
+            background: rgba(201,168,76,0.1);
         }
-
-        .music-title { font-size: 0.8rem; color: #c9a84c; letter-spacing: 2px; }
-        .music-sub   { font-size: 0.7rem; color: #555;    letter-spacing: 1px; }
 
         .music-bars {
             display: flex;
-            align-items: flex-end;
-            gap: 3px;
+            align-items: center;
+            gap: 2px;
             height: 20px;
         }
 
@@ -199,52 +187,51 @@
         }
 
         .countdown-item p {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             color: #666;
             letter-spacing: 3px;
             text-transform: uppercase;
-            margin-top: 5px;
+            margin-top: 8px;
         }
 
-        /* Section RSVP */
+        /* RSVP */
         .rsvp-section {
             z-index: 1;
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
             margin-bottom: 60px;
+            text-align: center;
         }
 
         .section-title {
-            text-align: center;
             font-size: 1.2rem;
             font-weight: normal;
             color: #c9a84c;
             letter-spacing: 6px;
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .section-subtitle {
-            text-align: center;
-            color: #555;
-            font-size: 0.75rem;
+            color: #666;
+            font-size: 0.85rem;
             letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 35px;
+            margin-bottom: 20px;
         }
 
         .rsvp-divider {
             width: 60px;
             height: 1px;
             background: linear-gradient(90deg, transparent, #c9a84c, transparent);
-            margin: 0 auto 35px;
+            margin: 0 auto 30px;
         }
 
         .rsvp-buttons {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             justify-content: center;
-            margin-bottom: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
         }
 
         .rsvp-btn {
@@ -313,6 +300,23 @@
         }
 
         .rsvp-submit:hover { opacity: 0.85; }
+
+        .rsvp-submit-non {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #444, #666);
+            border: none;
+            color: #f5f5f5;
+            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            margin-top: 10px;
+        }
+
+        .rsvp-submit-non:hover { opacity: 0.85; }
 
         .rsvp-confirm {
             display: none;
@@ -434,52 +438,39 @@
         }
 
         .filter-btn {
-            background: transparent;
-            border: 1px solid rgba(201, 168, 76, 0.3);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 50px;
-            padding: 6px 16px;
-            color: #888;
+            padding: 8px 16px;
+            color: #666;
             font-size: 0.75rem;
+            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
-            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             gap: 6px;
+            letter-spacing: 0.5px;
         }
 
-        .filter-btn i { font-size: 0.9rem; }
-
-        .filter-btn.active,
-        .filter-btn:hover {
-            background: rgba(201, 168, 76, 0.15);
+        .filter-btn:hover, .filter-btn.active {
             border-color: #c9a84c;
             color: #c9a84c;
+            background: rgba(201,168,76,0.08);
         }
 
-        /* Liste des tâches */
-        .todo-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        /* Liste tâches */
+        .todo-list { display: flex; flex-direction: column; gap: 10px; }
 
         .todo-item {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 12px;
-            padding: 16px 20px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 16px 20px;
             transition: all 0.3s;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to   { opacity: 1; transform: translateY(0); }
         }
 
         .todo-item:hover {
@@ -620,43 +611,28 @@
     <!-- Particules -->
     <div class="particles" id="particles"></div>
 
-    <!-- Audio -->
+    <!-- Bouton musique -->
+    <button class="music-btn" onclick="toggleMusic()">
+        <i class="ph ph-play" id="musicIcon"></i>
+        <div class="music-bars paused" id="musicBars">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </button>
+
     <audio id="bgMusic" loop>
-        <source src="musique.mp3" type="audio/mpeg">
+        <source src="music.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Header -->
     <div class="header">
         <div class="et">
-            <i class="ph ph-shooting-star"></i>
-            Mélina &amp; Jordan
-            <i class="ph ph-shooting-star"></i>
+            Mélina <i class="ph ph-heart"></i> Jordan
         </div>
-        <h1>Notre Mariage</h1>
-        <div class="date">
-            <i class="ph ph-calendar-blank"></i>
+        <h1>Nous vous convions à notre mariage</h1>
+        <p class="date">
+            <i class="ph ph-calendar"></i>
             29 Août 2026
-            <i class="ph ph-map-pin"></i>
-            France
-        </div>
-    </div>
-
-    <!-- Lecteur musical -->
-    <div class="music-player">
-        <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
-            <i class="ph ph-play" id="musicIcon"></i>
-        </button>
-        <div class="music-info">
-            <div class="music-title">♪ Notre Chanson</div>
-            <div class="music-sub">Mélina & Jordan</div>
-        </div>
-        <div class="music-bars paused" id="musicBars">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+        </p>
     </div>
 
     <!-- Compte à rebours -->
@@ -681,9 +657,7 @@
 
     <!-- ═══════════════ SECTION RSVP ═══════════════ -->
     <div class="rsvp-section">
-        <h2 class="section-title">
-            ✦ &nbsp; RSVP &nbsp; ✦
-        </h2>
+        <h2 class="section-title">✦ &nbsp; RSVP &nbsp; ✦</h2>
         <p class="section-subtitle">Serez-vous des nôtres ?</p>
         <div class="rsvp-divider"></div>
 
@@ -699,11 +673,20 @@
 
         <!-- Formulaire OUI -->
         <div id="formOui" style="display:none;">
-            <input type="text" id="rsvpPrenom" class="rsvp-input" placeholder="Prénom" />
-            <input type="text" id="rsvpNom" class="rsvp-input" placeholder="Nom" />
-            <input type="number" id="rsvpAccompagnants" class="rsvp-input" placeholder="Nombre d'accompagnants (0 si seul)" min="0" />
+            <input type="text"   id="rsvpPrenom"         class="rsvp-input" placeholder="Prénom" />
+            <input type="text"   id="rsvpNom"            class="rsvp-input" placeholder="Nom" />
+            <input type="number" id="rsvpAccompagnants"  class="rsvp-input" placeholder="Nombre d'accompagnants (0 si seul)" min="0" />
             <button class="rsvp-submit" onclick="envoyerRSVP()">
                 Confirmer ma présence &nbsp; ✦
+            </button>
+        </div>
+
+        <!-- Formulaire NON -->
+        <div id="formNon" style="display:none;">
+            <input type="text" id="rsvpPrenomNon" class="rsvp-input" placeholder="Prénom" />
+            <input type="text" id="rsvpNomNon"    class="rsvp-input" placeholder="Nom" />
+            <button class="rsvp-submit-non" onclick="envoyerRSVPNon()">
+                Confirmer mon absence &nbsp; ✗
             </button>
         </div>
 
@@ -801,53 +784,69 @@
         }
 
         // ── RSVP ─────────────────────────────────────────────────
+        const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwMhwIHP-bUlqEyBdwknsXtXjvPWNi5yTnkM4IzQfCVEVKs-oeOgrQKFzGnRaxEU4FK/exec';
+
         function choixRSVP(choix) {
-            const formOui   = document.getElementById('formOui');
-            const confirm   = document.getElementById('rsvpConfirm');
-            const buttons   = document.getElementById('rsvpButtons');
+            const formOui = document.getElementById('formOui');
+            const formNon = document.getElementById('formNon');
+            const confirm = document.getElementById('rsvpConfirm');
 
             if (choix === 'oui') {
                 formOui.style.display = 'block';
+                formNon.style.display = 'none';
                 confirm.style.display = 'none';
             } else {
-                buttons.style.display  = 'none';
-                formOui.style.display  = 'none';
-                confirm.style.display  = 'block';
-                confirm.innerHTML      = '✦ Merci pour votre réponse.<br>Vous serez manqués ! ✦';
+                formNon.style.display = 'block';
+                formOui.style.display = 'none';
+                confirm.style.display = 'none';
             }
         }
 
         function envoyerRSVP() {
-            const prenom         = document.getElementById('rsvpPrenom').value.trim();
-            const nom            = document.getElementById('rsvpNom').value.trim();
-            const accompagnants  = document.getElementById('rsvpAccompagnants').value || 0;
+            const prenom        = document.getElementById('rsvpPrenom').value.trim();
+            const nom           = document.getElementById('rsvpNom').value.trim();
+            const accompagnants = document.getElementById('rsvpAccompagnants').value || 0;
 
             if (!prenom || !nom) {
                 alert('Merci de renseigner votre prénom et votre nom !');
                 return;
             }
 
-            const data = {
-                prenom:        prenom,
-                nom:           nom,
-                presence:      'OUI',
-                accompagnants: accompagnants
-            };
-
-            fetch('https://script.google.com/macros/s/AKfycbwMhwIHP-bUlqEyBdwknsXtXjvPWNi5yTnkM4IzQfCVEVKs-oeOgrQKFzGnRaxEU4FK/exec', {
+            fetch(SHEET_URL, {
                 method: 'POST',
-                body:   JSON.stringify(data)
+                body: JSON.stringify({ prenom, nom, presence: 'OUI', accompagnants })
             })
             .then(() => {
                 document.getElementById('rsvpButtons').style.display = 'none';
                 document.getElementById('formOui').style.display     = 'none';
-                const confirm        = document.getElementById('rsvpConfirm');
+                const confirm         = document.getElementById('rsvpConfirm');
                 confirm.style.display = 'block';
-                confirm.innerHTML    = '✦ Merci ' + prenom + ' !<br>Votre présence est bien confirmée. ✦';
+                confirm.innerHTML     = '✦ Merci ' + prenom + ' !<br>Votre présence est bien confirmée. ✦';
             })
-            .catch(() => {
-                alert('Une erreur est survenue, veuillez réessayer.');
-            });
+            .catch(() => alert('Une erreur est survenue, veuillez réessayer.'));
+        }
+
+        function envoyerRSVPNon() {
+            const prenom = document.getElementById('rsvpPrenomNon').value.trim();
+            const nom    = document.getElementById('rsvpNomNon').value.trim();
+
+            if (!prenom || !nom) {
+                alert('Merci de renseigner votre prénom et votre nom !');
+                return;
+            }
+
+            fetch(SHEET_URL, {
+                method: 'POST',
+                body: JSON.stringify({ prenom, nom, presence: 'NON', accompagnants: 0 })
+            })
+            .then(() => {
+                document.getElementById('rsvpButtons').style.display = 'none';
+                document.getElementById('formNon').style.display     = 'none';
+                const confirm         = document.getElementById('rsvpConfirm');
+                confirm.style.display = 'block';
+                confirm.innerHTML     = '✦ Merci ' + prenom + ' !<br>Vous nous manquerez ! ✦';
+            })
+            .catch(() => alert('Une erreur est survenue, veuillez réessayer.'));
         }
 
         // ── DONNÉES TÂCHES ────────────────────────────────────────
@@ -896,7 +895,7 @@
             renderTasks();
         }
 
-        // ── FILTRER ───────────────────────────────────────────────
+        // ── FILTRES ───────────────────────────────────────────────
         function filterTasks(filter, btn) {
             currentFilter = filter;
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -904,24 +903,22 @@
             renderTasks();
         }
 
-        // ── RENDU ─────────────────────────────────────────────────
+        // ── RENDER ────────────────────────────────────────────────
         function renderTasks() {
-            const list = document.getElementById('todoList');
+            const list     = document.getElementById('todoList');
+            const total    = tasks.length;
+            const done     = tasks.filter(t => t.done).length;
+            const pct      = total === 0 ? 0 : Math.round((done / total) * 100);
+
+            document.getElementById('progressBar').style.width = pct + '%';
+            document.getElementById('progressText').textContent = done + ' / ' + total + ' tâches complétées';
 
             const filtered = currentFilter === 'all'
-                ? [...tasks]
+                ? tasks
                 : tasks.filter(t => t.cat === currentFilter);
 
-            const done  = tasks.filter(t => t.done).length;
-            const total = tasks.length;
-            const pct   = total ? Math.round((done / total) * 100) : 0;
-
-            document.getElementById('progressBar').style.width  = pct + '%';
-            document.getElementById('progressText').textContent =
-                `${done} / ${total} tâche${total > 1 ? 's' : ''} complétée${done > 1 ? 's' : ''}`;
-
             if (filtered.length === 0) {
-                list.innerHTML = '<div class="empty-msg">✦ &nbsp; Aucune tâche &nbsp; ✦</div>';
+                list.innerHTML = '<div class="empty-msg">Aucune tâche ici...</div>';
                 return;
             }
 
@@ -929,8 +926,7 @@
                 const cat = categories[t.cat] || categories['autre'];
                 return `
                 <div class="todo-item ${t.done ? 'done' : ''}">
-                    <div class="custom-checkbox ${t.done ? 'checked' : ''}"
-                         onclick="toggleTask(${t.id})">
+                    <div class="custom-checkbox ${t.done ? 'checked' : ''}" onclick="toggleTask(${t.id})">
                         ${t.done ? '<i class="ph ph-check"></i>' : ''}
                     </div>
                     <div class="task-info">
