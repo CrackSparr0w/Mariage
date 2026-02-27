@@ -59,7 +59,6 @@
             z-index: 1;
         }
 
-        /* ── STYLES INVERSÉS ── */
         .header .et {
             font-size: 3.5rem;
             font-weight: normal;
@@ -205,6 +204,124 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             margin-top: 5px;
+        }
+
+        /* Section RSVP */
+        .rsvp-section {
+            z-index: 1;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: normal;
+            color: #c9a84c;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #555;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+        }
+
+        .rsvp-divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+            margin: 0 auto 35px;
+        }
+
+        .rsvp-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .rsvp-btn {
+            padding: 14px 28px;
+            border: 1px solid #c9a84c;
+            background: transparent;
+            color: #c9a84c;
+            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .rsvp-btn:hover {
+            background: #c9a84c;
+            color: #0a0a0a;
+        }
+
+        .rsvp-btn-non {
+            border-color: #444;
+            color: #555;
+        }
+
+        .rsvp-btn-non:hover {
+            background: #444;
+            color: #f5f5f5;
+        }
+
+        .rsvp-input {
+            width: 100%;
+            padding: 14px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #333;
+            color: #f5f5f5;
+            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .rsvp-input:focus { border-color: #c9a84c; }
+
+        .rsvp-input::placeholder {
+            color: #444;
+            letter-spacing: 2px;
+        }
+
+        .rsvp-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #c9a84c, #f5e6c8);
+            border: none;
+            color: #0a0a0a;
+            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            margin-top: 10px;
+        }
+
+        .rsvp-submit:hover { opacity: 0.85; }
+
+        .rsvp-confirm {
+            display: none;
+            text-align: center;
+            color: #c9a84c;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            padding: 30px 20px;
+            line-height: 2;
         }
 
         /* Section Todo */
@@ -493,6 +610,8 @@
             .add-task       { flex-wrap: wrap; }
             .add-task select{ width: 100%; }
             .photo-section  { max-width: 100%; }
+            .rsvp-buttons   { flex-direction: column; align-items: center; }
+            .rsvp-btn       { width: 100%; text-align: center; }
         }
     </style>
 </head>
@@ -559,6 +678,39 @@
             <p>Secondes</p>
         </div>
     </div>
+
+    <!-- ═══════════════ SECTION RSVP ═══════════════ -->
+    <div class="rsvp-section">
+        <h2 class="section-title">
+            ✦ &nbsp; RSVP &nbsp; ✦
+        </h2>
+        <p class="section-subtitle">Serez-vous des nôtres ?</p>
+        <div class="rsvp-divider"></div>
+
+        <!-- Boutons OUI / NON -->
+        <div class="rsvp-buttons" id="rsvpButtons">
+            <button class="rsvp-btn" onclick="choixRSVP('oui')">
+                ✦ &nbsp; Oui, j'y serai !
+            </button>
+            <button class="rsvp-btn rsvp-btn-non" onclick="choixRSVP('non')">
+                ✗ &nbsp; Non, je ne pourrai pas
+            </button>
+        </div>
+
+        <!-- Formulaire OUI -->
+        <div id="formOui" style="display:none;">
+            <input type="text" id="rsvpPrenom" class="rsvp-input" placeholder="Prénom" />
+            <input type="text" id="rsvpNom" class="rsvp-input" placeholder="Nom" />
+            <input type="number" id="rsvpAccompagnants" class="rsvp-input" placeholder="Nombre d'accompagnants (0 si seul)" min="0" />
+            <button class="rsvp-submit" onclick="envoyerRSVP()">
+                Confirmer ma présence &nbsp; ✦
+            </button>
+        </div>
+
+        <!-- Message de confirmation -->
+        <div class="rsvp-confirm" id="rsvpConfirm"></div>
+    </div>
+    <!-- ════════════════════════════════════════════ -->
 
     <!-- Todo -->
     <div class="todo-section">
@@ -630,166 +782,213 @@
 
     <script>
         // ── MUSIQUE ───────────────────────────────────────────────
-const audio     = document.getElementById('bgMusic');
-const musicIcon = document.getElementById('musicIcon');
-const musicBars = document.getElementById('musicBars');
-let   isPlaying = false;
+        const audio     = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+        const musicBars = document.getElementById('musicBars');
+        let   isPlaying = false;
 
-function toggleMusic() {
-    if (isPlaying) {
-        audio.pause();
-        musicIcon.className = 'ph ph-play';
-        musicBars.classList.add('paused');
-    } else {
-        audio.play();
-        musicIcon.className = 'ph ph-pause';
-        musicBars.classList.remove('paused');
-    }
-    isPlaying = !isPlaying;
-}
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicIcon.className = 'ph ph-play';
+                musicBars.classList.add('paused');
+            } else {
+                audio.play();
+                musicIcon.className = 'ph ph-pause';
+                musicBars.classList.remove('paused');
+            }
+            isPlaying = !isPlaying;
+        }
 
-// ── DONNÉES ───────────────────────────────────────────────
-const categories = {
-    lieu:    { label: 'Lieu',     icon: 'ph-map-pin',    css: 'cat-lieu'    },
-    tenue:   { label: 'Tenues',   icon: 'ph-dress',      css: 'cat-tenue'   },
-    repas:   { label: 'Traiteur', icon: 'ph-fork-knife', css: 'cat-repas'   },
-    deco:    { label: 'Déco',     icon: 'ph-sparkle',    css: 'cat-deco'    },
-    invites: { label: 'Invités',  icon: 'ph-envelope',   css: 'cat-invites' },
-    autre:   { label: 'Autre',    icon: 'ph-push-pin',   css: 'cat-autre'   },
-};
+        // ── RSVP ─────────────────────────────────────────────────
+        function choixRSVP(choix) {
+            const formOui   = document.getElementById('formOui');
+            const confirm   = document.getElementById('rsvpConfirm');
+            const buttons   = document.getElementById('rsvpButtons');
 
-let tasks         = JSON.parse(localStorage.getItem('weddingTasks') || '[]');
-let currentFilter = 'all';
+            if (choix === 'oui') {
+                formOui.style.display = 'block';
+                confirm.style.display = 'none';
+            } else {
+                buttons.style.display  = 'none';
+                formOui.style.display  = 'none';
+                confirm.style.display  = 'block';
+                confirm.innerHTML      = '✦ Merci pour votre réponse.<br>Vous serez manqués ! ✦';
+            }
+        }
 
-function saveTasks() {
-    localStorage.setItem('weddingTasks', JSON.stringify(tasks));
-}
+        function envoyerRSVP() {
+            const prenom         = document.getElementById('rsvpPrenom').value.trim();
+            const nom            = document.getElementById('rsvpNom').value.trim();
+            const accompagnants  = document.getElementById('rsvpAccompagnants').value || 0;
 
-// ── AJOUTER ───────────────────────────────────────────────
-function addTask() {
-    const input = document.getElementById('taskInput');
-    const cat   = document.getElementById('categorySelect').value;
-    const text  = input.value.trim();
-    if (!text) return;
-    tasks.push({ id: Date.now(), text, cat, done: false });
-    saveTasks();
-    input.value = '';
-    renderTasks();
-}
+            if (!prenom || !nom) {
+                alert('Merci de renseigner votre prénom et votre nom !');
+                return;
+            }
 
-document.getElementById('taskInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') addTask();
-});
+            const data = {
+                prenom:        prenom,
+                nom:           nom,
+                presence:      'OUI',
+                accompagnants: accompagnants
+            };
 
-// ── TOGGLE ────────────────────────────────────────────────
-function toggleTask(id) {
-    const t = tasks.find(t => t.id === id);
-    if (t) { t.done = !t.done; saveTasks(); renderTasks(); }
-}
+            fetch('https://script.google.com/macros/s/AKfycbwMhwIHP-bUlqEyBdwknsXtXjvPWNi5yTnkM4IzQfCVEVKs-oeOgrQKFzGnRaxEU4FK/exec', {
+                method: 'POST',
+                body:   JSON.stringify(data)
+            })
+            .then(() => {
+                document.getElementById('rsvpButtons').style.display = 'none';
+                document.getElementById('formOui').style.display     = 'none';
+                const confirm        = document.getElementById('rsvpConfirm');
+                confirm.style.display = 'block';
+                confirm.innerHTML    = '✦ Merci ' + prenom + ' !<br>Votre présence est bien confirmée. ✦';
+            })
+            .catch(() => {
+                alert('Une erreur est survenue, veuillez réessayer.');
+            });
+        }
 
-// ── SUPPRIMER ─────────────────────────────────────────────
-function deleteTask(id) {
-    tasks = tasks.filter(t => t.id !== id);
-    saveTasks();
-    renderTasks();
-}
+        // ── DONNÉES TÂCHES ────────────────────────────────────────
+        const categories = {
+            lieu:    { label: 'Lieu',     icon: 'ph-map-pin',    css: 'cat-lieu'    },
+            tenue:   { label: 'Tenues',   icon: 'ph-dress',      css: 'cat-tenue'   },
+            repas:   { label: 'Traiteur', icon: 'ph-fork-knife', css: 'cat-repas'   },
+            deco:    { label: 'Déco',     icon: 'ph-sparkle',    css: 'cat-deco'    },
+            invites: { label: 'Invités',  icon: 'ph-envelope',   css: 'cat-invites' },
+            autre:   { label: 'Autre',    icon: 'ph-push-pin',   css: 'cat-autre'   },
+        };
 
-// ── FILTRER ───────────────────────────────────────────────
-function filterTasks(filter, btn) {
-    currentFilter = filter;
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderTasks();
-}
+        let tasks         = JSON.parse(localStorage.getItem('weddingTasks') || '[]');
+        let currentFilter = 'all';
 
-// ── RENDU ─────────────────────────────────────────────────
-function renderTasks() {
-    const list = document.getElementById('todoList');
+        function saveTasks() {
+            localStorage.setItem('weddingTasks', JSON.stringify(tasks));
+        }
 
-    const filtered = currentFilter === 'all'
-        ? [...tasks]
-        : tasks.filter(t => t.cat === currentFilter);
+        // ── AJOUTER ───────────────────────────────────────────────
+        function addTask() {
+            const input = document.getElementById('taskInput');
+            const cat   = document.getElementById('categorySelect').value;
+            const text  = input.value.trim();
+            if (!text) return;
+            tasks.push({ id: Date.now(), text, cat, done: false });
+            saveTasks();
+            input.value = '';
+            renderTasks();
+        }
 
-    const done  = tasks.filter(t => t.done).length;
-    const total = tasks.length;
-    const pct   = total ? Math.round((done / total) * 100) : 0;
+        document.getElementById('taskInput').addEventListener('keydown', e => {
+            if (e.key === 'Enter') addTask();
+        });
 
-    document.getElementById('progressBar').style.width  = pct + '%';
-    document.getElementById('progressText').textContent =
-        `${done} / ${total} tâche${total > 1 ? 's' : ''} complétée${done > 1 ? 's' : ''}`;
+        // ── TOGGLE ────────────────────────────────────────────────
+        function toggleTask(id) {
+            const t = tasks.find(t => t.id === id);
+            if (t) { t.done = !t.done; saveTasks(); renderTasks(); }
+        }
 
-    if (filtered.length === 0) {
-        list.innerHTML = '<div class="empty-msg">✦ &nbsp; Aucune tâche &nbsp; ✦</div>';
-        return;
-    }
+        // ── SUPPRIMER ─────────────────────────────────────────────
+        function deleteTask(id) {
+            tasks = tasks.filter(t => t.id !== id);
+            saveTasks();
+            renderTasks();
+        }
 
-    list.innerHTML = filtered.map(t => {
-        const cat = categories[t.cat] || categories['autre'];
-        return `
-        <div class="todo-item ${t.done ? 'done' : ''}">
-            <div class="custom-checkbox ${t.done ? 'checked' : ''}"
-                 onclick="toggleTask(${t.id})">
-                ${t.done ? '<i class="ph ph-check"></i>' : ''}
-            </div>
-            <div class="task-info">
-                <div class="task-text">${t.text}</div>
-                <span class="task-category ${cat.css}">
-                    <i class="ph ${cat.icon}"></i>
-                    ${cat.label}
-                </span>
-            </div>
-            <button class="delete-btn" onclick="deleteTask(${t.id})">
-                <i class="ph ph-trash"></i>
-            </button>
-        </div>`;
-    }).join('');
-}
+        // ── FILTRER ───────────────────────────────────────────────
+        function filterTasks(filter, btn) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderTasks();
+        }
 
-// ── COMPTE À REBOURS ──────────────────────────────────────
-function updateCountdown() {
-    const target = new Date('2026-08-29T00:00:00');
-    const now    = new Date();
-    const diff   = target - now;
+        // ── RENDU ─────────────────────────────────────────────────
+        function renderTasks() {
+            const list = document.getElementById('todoList');
 
-    if (diff <= 0) {
-        document.querySelector('.countdown').innerHTML =
-            '<p style="color:#c9a84c;font-size:1.5rem;letter-spacing:3px">✦ C\'est le grand jour ! ✦</p>';
-        return;
-    }
+            const filtered = currentFilter === 'all'
+                ? [...tasks]
+                : tasks.filter(t => t.cat === currentFilter);
 
-    const days    = Math.floor(diff / 86400000);
-    const hours   = Math.floor((diff % 86400000) / 3600000);
-    const minutes = Math.floor((diff % 3600000)  / 60000);
-    const seconds = Math.floor((diff % 60000)    / 1000);
+            const done  = tasks.filter(t => t.done).length;
+            const total = tasks.length;
+            const pct   = total ? Math.round((done / total) * 100) : 0;
 
-    document.getElementById('days').textContent    = String(days).padStart(2, '0');
-    document.getElementById('hours').textContent   = String(hours).padStart(2, '0');
-    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-}
+            document.getElementById('progressBar').style.width  = pct + '%';
+            document.getElementById('progressText').textContent =
+                `${done} / ${total} tâche${total > 1 ? 's' : ''} complétée${done > 1 ? 's' : ''}`;
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
+            if (filtered.length === 0) {
+                list.innerHTML = '<div class="empty-msg">✦ &nbsp; Aucune tâche &nbsp; ✦</div>';
+                return;
+            }
 
-// ── PARTICULES ────────────────────────────────────────────
-function createParticles() {
-    const container = document.getElementById('particles');
-    for (let i = 0; i < 40; i++) {
-        const p = document.createElement('div');
-        p.classList.add('particle');
-        p.style.left              = Math.random() * 100 + '%';
-        p.style.animationDuration = (Math.random() * 15 + 10) + 's';
-        p.style.animationDelay    = (Math.random() * 10) + 's';
-        if (Math.random() > 0.7) p.style.background = '#fff';
-        container.appendChild(p);
-    }
-}
+            list.innerHTML = filtered.map(t => {
+                const cat = categories[t.cat] || categories['autre'];
+                return `
+                <div class="todo-item ${t.done ? 'done' : ''}">
+                    <div class="custom-checkbox ${t.done ? 'checked' : ''}"
+                         onclick="toggleTask(${t.id})">
+                        ${t.done ? '<i class="ph ph-check"></i>' : ''}
+                    </div>
+                    <div class="task-info">
+                        <div class="task-text">${t.text}</div>
+                        <span class="task-category ${cat.css}">
+                            <i class="ph ${cat.icon}"></i>
+                            ${cat.label}
+                        </span>
+                    </div>
+                    <button class="delete-btn" onclick="deleteTask(${t.id})">
+                        <i class="ph ph-trash"></i>
+                    </button>
+                </div>`;
+            }).join('');
+        }
 
-createParticles();
-renderTasks();
+        // ── COMPTE À REBOURS ──────────────────────────────────────
+        function updateCountdown() {
+            const target = new Date('2026-08-29T00:00:00');
+            const now    = new Date();
+            const diff   = target - now;
 
+            if (diff <= 0) {
+                document.querySelector('.countdown').innerHTML =
+                    '<p style="color:#c9a84c;font-size:1.5rem;letter-spacing:3px">✦ C\'est le grand jour ! ✦</p>';
+                return;
+            }
+
+            const days    = Math.floor(diff / 86400000);
+            const hours   = Math.floor((diff % 86400000) / 3600000);
+            const minutes = Math.floor((diff % 3600000)  / 60000);
+            const seconds = Math.floor((diff % 60000)    / 1000);
+
+            document.getElementById('days').textContent    = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent   = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // ── PARTICULES ────────────────────────────────────────────
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 40; i++) {
+                const p = document.createElement('div');
+                p.classList.add('particle');
+                p.style.left              = Math.random() * 100 + '%';
+                p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                p.style.animationDelay    = (Math.random() * 10) + 's';
+                if (Math.random() > 0.7) p.style.background = '#fff';
+                container.appendChild(p);
+            }
+        }
+
+        createParticles();
+        renderTasks();
     </script>
 </body>
 </html>
-
-
